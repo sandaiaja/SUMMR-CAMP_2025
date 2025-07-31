@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三大小ジュニアバレーボールクラブ 夏合宿インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #e3f2fd; /* Light Blue Background */
+        }
+        .palette-bg-dark { background-color: #2196F3; } /* Vibrant Blue */
+        .palette-bg-light { background-color: #FFFFFF; }
+        .palette-text-accent1 { color: #FF6B6B; } /* Red */
+        .palette-text-accent2 { color: #FFD166; } /* Yellow */
+        .palette-text-accent3 { color: #06D6A0; } /* Green */
+        .palette-text-accent4 { color: #0D47A1; } /* Darker Blue */
+        .palette-text-dark { color: #212121; } /* Dark Gray */
+        .palette-text-light { color: #FFFFFF; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline-container {
+            position: relative;
+            padding-left: 3rem; /* Space for icons and line */
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem; /* Position of the vertical line */
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #1976D2; /* A shade of blue for the line */
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            display: flex; /* Use flexbox for icon and text alignment */
+            align-items: center;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -0.5rem; /* Adjust to align with the line */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            z-index: 10; /* Ensure icon is above the line */
+        }
+        .timeline-item p {
+            margin-left: 2rem; /* Space between icon and text */
+            padding-left: 0.5rem;
+        }
+    </style>
+</head>
+<body class="palette-bg-dark">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12 py-12 palette-bg-light rounded-2xl shadow-2xl">
+            <h1 class="text-4xl md:text-6xl font-black palette-text-dark mb-2">最高の夏にしよう！</h1>
+            <h2 class="text-2xl md:text-4xl font-bold palette-text-accent4 mb-4">三大小ジュニアバレーボールクラブ 夏合宿 2025</h2>
+            <p class="text-lg md:text-xl font-bold palette-text-dark">🏐 2025年8月14日(木) 〜 8月16日(土) 🏐</p>
+            <p class="text-md md:text-lg palette-text-dark">📍 千葉県立君津亀山青少年自然の家</p>
+        </header>
+
+        <main>
+            <section id="goals" class="mb-16">
+                <h3 class="text-3xl font-bold text-center mb-8 palette-text-light">合宿の目的：みんなでレベルアップ！</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center">
+                        <span class="text-5xl mb-4 block">💪</span>
+                        <h4 class="text-xl font-bold palette-text-dark mb-2">技術の向上</h4>
+                        <p class="palette-text-dark">バレーボールの基礎から応用まで、集中的に練習してスキルを磨きます。</p>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center">
+                        <span class="text-5xl mb-4 block">🤝</span>
+                        <h4 class="text-xl font-bold palette-text-dark mb-2">チームワークの強化</h4>
+                        <p class="palette-text-dark">仲間との連携を深め、コート内外で最高のチームを目指します。</p>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center">
+                        <span class="text-5xl mb-4 block">🌱</span>
+                        <h4 class="text-xl font-bold palette-text-dark mb-2">自立心と協調性</h4>
+                        <p class="palette-text-dark">共同生活を通じて、自分のことは自分でやる力と仲間を思いやる心を育てます。</p>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center md:col-span-2 lg:col-span-3 border-4 border-yellow-400">
+                        <span class="text-5xl mb-4 block">🏆</span>
+                        <h4 class="text-xl font-bold palette-text-accent1 mb-2">【6年生へ】最後の東京新聞杯に向けて</h4>
+                        <p class="palette-text-dark">この合宿は、最後の大きな大会に向けた重要な強化期間です。全力を出し切ろう！</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="cost" class="mb-16 palette-bg-light rounded-2xl shadow-xl p-8">
+                <h3 class="text-3xl font-bold text-center mb-8 palette-text-dark">参加費について</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:col-span-2">
+                        <div class="mb-6">
+                            <p class="text-2xl font-bold palette-text-accent4">こども</p>
+                            <p class="text-5xl font-black palette-text-dark">¥8,500</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold palette-text-accent1">おとな</p>
+                            <p class="text-5xl font-black palette-text-dark">¥9,500</p>
+                        </div>
+                        <p class="text-center palette-text-dark mt-4">参加費には宿泊費、食費などが含まれています。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="schedule" class="mb-16">
+                <h3 class="text-3xl font-bold text-center mb-12 palette-text-light">アクション満載！合宿スケジュール</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6">
+                        <h4 class="text-2xl font-bold text-center palette-text-dark mb-6">1日目 (8/14)</h4>
+                        <div class="timeline-container">
+                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">🚌</div><p class="font-bold">6:30 出発</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">📍</div><p class="font-bold">8:30 到着</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">9:00 午前練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍱</div><p class="font-bold">12:00 昼食 <span class="text-red-600">(各自持参)</span></p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">13:00 午後練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-red-500">🚿</div><p class="font-bold">17:30 風呂</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">18:00 夕食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-purple-500">📝</div><p class="font-bold">20:00 ミーティング</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-gray-700">😴</div><p class="font-bold">22:00 消灯</p></div>
+                        </div>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6">
+                        <h4 class="text-2xl font-bold text-center palette-text-dark mb-6">2日目 (8/15)</h4>
+                        <div class="timeline-container">
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-400">☀️</div><p class="font-bold">6:00 起床</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-blue-400">🚶</div><p class="font-bold">6:15 散歩</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">7:00 朝食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">9:00 午前練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">12:00 昼食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">13:00 午後練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-red-500">🚿</div><p class="font-bold">17:30 風呂</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-purple-500">📝</div><p class="font-bold">20:00 ミーティング</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-gray-700">😴</div><p class="font-bold">22:00 消灯</p></div>
+                        </div>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6">
+                        <h4 class="text-2xl font-bold text-center palette-text-dark mb-6">3日目 (8/16)</h4>
+                        <div class="timeline-container">
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-400">☀️</div><p class="font-bold">6:00 起床</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-blue-400">🧹</div><p class="font-bold">6:15 掃除・片付け</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">7:00 朝食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">9:00 午前練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">12:00 昼食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">13:00 午後練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">🚌</div><p class="font-bold">16:30 出発</p></div>
+                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">🏠</div><p class="font-bold">19:00 帰宅予定</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="checklist" class="mb-16 palette-bg-light rounded-2xl shadow-xl p-8">
+                <h3 class="text-3xl font-bold text-center mb-8 palette-text-dark">準備はOK？持ち物チェックリスト</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold palette-text-accent4 mb-4">👤 個人の持ち物</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><span class="mr-3">👕</span>バレーボールウェア (たくさん！)</li>
+                            <li class="flex items-center"><span class="mr-3">👟</span>体育館シューズ</li>
+                            <li class="flex items-center"><span class="mr-3">🧦</span>着替え (下着、靴下など)</li>
+                            <li class="flex items-center"><span class="mr-3">😴</span>パジャマ</li>
+                            <li class="flex items-center"><span class="mr-3">🧼</span>洗面用具</li>
+                            <li class="flex items-center"><span class="mr-3">💧</span>水筒</li>
+                            <li class="flex items-center"><span class="mr-3">🧢</span>帽子</li>
+                            <li class="flex items-center"><span class="mr-3">🦟</span>虫よけスプレー</li>
+                            <li class="flex items-center"><span class="mr-3">💊</span>常備薬</li>
+                            <li class="flex items-center"><span class="mr-3">📝</span>筆記用具</li>
+                            <li class="flex items-center"><span class="mr-3">📄</span>健康保険証のコピー</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold palette-text-accent1 mb-4">🤝 チームの持ち物</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><span class="mr-3">🏐</span>ボール</li>
+                            <li class="flex items-center"><span class="mr-3">🧺</span>ボールかご</li>
+                            <li class="flex items-center"><span class="mr-3">🌐</span>ネット</li>
+                            <li class="flex items-center"><span class="mr-3">⏱️</span>タイマー</li>
+                            <li class="flex items-center"><span class="mr-3">📏</span>メジャー</li>
+                            <li class="flex items-center"><span class="mr-3">テープ</span>ラインテープ</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reminders">
+                <h3 class="text-3xl font-bold text-center mb-8 palette-text-light">大切なこと：みんなで守ろう！</h3>
+                <div class="space-y-8">
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 flex items-start">
+                        <span class="text-4xl mr-4">👨‍👩‍👧‍👦</span>
+                        <div>
+                            <h4 class="text-xl font-bold palette-text-dark mb-2">保護者の皆様へのお願い</h4>
+                            <p class="palette-text-dark">この合宿は子どもたちの自立を促す貴重な機会です。困ったことがあれば、自分の親ではなく指導者に相談するようお子様の背中を押してあげてください。皆様にはボランティアとして、そして合宿を楽しむ一員としてのご参加をお願いいたします！</p>
+                        </div>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 flex items-start">
+                        <span class="text-4xl mr-4">☀️</span>
+                        <div>
+                            <h4 class="text-xl font-bold palette-text-dark mb-2">暑さ対策について</h4>
+                            <p class="palette-text-dark">体育館にエアコンはありません。こまめな水分補給と休憩を徹底し、熱中症を防ぎます。汗をたくさんかくので、着替えは多めに持ってきてください！</p>
+                        </div>
+                    </div>
+                    <div class="palette-bg-light rounded-xl shadow-lg p-6 flex items-start">
+                        <span class="text-4xl mr-4">🚫</span>
+                        <div>
+                            <h4 class="text-xl font-bold palette-text-dark mb-2">禁止事項</h4>
+                            <p class="palette-text-dark">子どもの個人的なお菓子の持ち込みはご遠慮ください。食事や補食はチームで管理します。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 py-8">
+            <p class="palette-text-light font-bold">三大小ジュニアバレーボールクラブ 事務局</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // No Chart.js code needed as the chart has been removed.
+    </script>
+
+</body>
+</html>
