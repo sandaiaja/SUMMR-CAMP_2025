@@ -10,16 +10,130 @@
     <style>
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background-color: #e3f2fd; /* Light Blue Background */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #1e3a8a 50%, #1e40af 75%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
         }
-        .palette-bg-dark { background-color: #2196F3; } /* Vibrant Blue */
-        .palette-bg-light { background-color: #FFFFFF; }
-        .palette-text-accent1 { color: #FF6B6B; } /* Red */
-        .palette-text-accent2 { color: #FFD166; } /* Yellow */
-        .palette-text-accent3 { color: #06D6A0; } /* Green */
-        .palette-text-accent4 { color: #0D47A1; } /* Darker Blue */
-        .palette-text-dark { color: #212121; } /* Dark Gray */
-        .palette-text-light { color: #FFFFFF; }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-bounce-custom {
+            animation: bounce 2s infinite;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .animate-pulse-custom {
+            animation: pulse 2s infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .volleyball-bg {
+            background: radial-gradient(circle, #1e40af 0%, #3b82f6 50%, #fff 100%);
+            border: 3px solid #333;
+        }
+
+        .net-pattern {
+            background-image: 
+                linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%),
+                linear-gradient(-45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            background-size: 20px 20px;
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(30, 64, 175, 0.5);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
 
         .chart-container {
             position: relative;
@@ -30,33 +144,44 @@
             height: 300px;
             max-height: 350px;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
+
         .timeline-container {
             position: relative;
-            padding-left: 3rem; /* Space for icons and line */
+            padding-left: 3rem;
         }
+
         .timeline-container::before {
             content: '';
             position: absolute;
-            left: 1.25rem; /* Position of the vertical line */
+            left: 1.25rem;
             top: 0;
             bottom: 0;
             width: 4px;
-            background-color: #1976D2; /* A shade of blue for the line */
+            background: linear-gradient(to bottom, #1e40af, #3b82f6, #60a5fa);
+            border-radius: 2px;
         }
+
         .timeline-item {
             position: relative;
             margin-bottom: 1.5rem;
-            display: flex; /* Use flexbox for icon and text alignment */
+            display: flex;
             align-items: center;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(8) { animation-delay: 0.8s; }
+
         .timeline-icon {
             position: absolute;
-            left: -0.5rem; /* Adjust to align with the line */
+            left: -0.5rem;
             top: 50%;
             transform: translateY(-50%);
             width: 2.5rem;
@@ -67,182 +192,330 @@
             justify-content: center;
             font-size: 1.2rem;
             color: white;
-            z-index: 10; /* Ensure icon is above the line */
+            z-index: 10;
+            transition: all 0.3s ease;
         }
+
+        .timeline-icon:hover {
+            transform: translateY(-50%) scale(1.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
         .timeline-item p {
-            margin-left: 2rem; /* Space between icon and text */
+            margin-left: 2rem;
             padding-left: 0.5rem;
+        }
+
+        .floating-volleyball {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #1e40af, #3b82f6);
+            border: 2px solid #333;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        .floating-volleyball::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #333;
+            transform: translateY(-50%);
+        }
+
+        .floating-volleyball::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #333;
+            transform: translateX(-50%);
+        }
+
+        .price-highlight {
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+
+        .section-enter {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-enter.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sparkle {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sparkle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .countdown-timer {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: pulse 1s infinite;
+        }
+
+        .dynamic-message {
+            font-size: 0.9rem;
+            margin-top: 8px;
+            min-height: 1.5rem;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .team-blue {
+            background-color: #1e40af;
+        }
+
+        .team-light-blue {
+            background-color: #3b82f6;
+        }
+
+        .team-dark-blue {
+            background-color: #1e3a8a;
+        }
+
+        /* 6年生向けメッセージのさわやかで元気なスタイル */
+        .sixth-grade-highlight {
+            background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 25%, #81d4fa 50%, #4fc3f7 75%, #29b6f6 100%);
+            border: 4px solid #ff5722;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.3);
+        }
+
+        .sixth-grade-highlight h4 {
+            color: #0d47a1;
+            font-weight: 800;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .sixth-grade-highlight p {
+            color: #1565c0;
+            font-weight: 600;
         }
     </style>
 </head>
-<body class="palette-bg-dark">
+<body>
+    <div class="floating-volleyball" id="floatingBall"></div>
 
     <div class="container mx-auto p-4 md:p-8 max-w-5xl">
 
-        <header class="text-center mb-12 py-12 palette-bg-light rounded-2xl shadow-2xl">
-            <h1 class="text-4xl md:text-6xl font-black palette-text-dark mb-2">最高の夏にしよう！</h1>
-            <h2 class="text-2xl md:text-4xl font-bold palette-text-accent4 mb-4">三大小ジュニアバレーボールクラブ 夏合宿 2025</h2>
-            <p class="text-lg md:text-xl font-bold palette-text-dark">🏐 2025年8月14日(木) 〜 8月16日(土) 🏐</p>
-            <p class="text-md md:text-lg palette-text-dark">📍 千葉県立君津亀山青少年自然の家</p>
+        <header class="text-center mb-12 py-12 bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl glow-effect animate-fade-in-up sparkle">
+            <div class="animate-bounce-custom">
+                <h1 class="text-4xl md:text-6xl font-black text-gray-800 mb-2 text-glow">最高の夏にしよう！</h1>
+            </div>
+            <h2 class="text-2xl md:text-4xl font-bold text-blue-800 mb-4 animate-pulse-custom">三大小ジュニアバレーボールクラブ 夏合宿 2025</h2>
+            <p class="text-lg md:text-xl font-bold text-gray-800 animate-slide-in-left">🏐 2025年8月14日(木) 〜 8月16日(土) 🏐</p>
+            <p class="text-md md:text-lg text-gray-700 animate-slide-in-right">📍 千葉県立君津亀山青少年自然の家</p>
+            
+            <div class="countdown-timer mt-6 animate-fade-in-up">
+                <div class="text-lg font-bold mb-2">合宿まであと</div>
+                <div class="countdown-number" id="countdown">13日</div>
+                <div class="dynamic-message" id="dynamicMessage">お楽しみに！</div>
+            </div>
         </header>
 
         <main>
-            <section id="goals" class="mb-16">
-                <h3 class="text-3xl font-bold text-center mb-8 palette-text-light">合宿の目的：みんなでレベルアップ！</h3>
+            <section id="goals" class="mb-16 section-enter">
+                <h3 class="text-3xl font-bold text-center mb-8 text-white text-glow">合宿の目的：みんなでレベルアップ！</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center">
-                        <span class="text-5xl mb-4 block">💪</span>
-                        <h4 class="text-xl font-bold palette-text-dark mb-2">技術の向上</h4>
-                        <p class="palette-text-dark">バレーボールの基礎から応用まで、集中的に練習してスキルを磨きます。</p>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 text-center card-hover sparkle">
+                        <span class="text-5xl mb-4 block animate-bounce-custom">💪</span>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">技術の向上</h4>
+                        <p class="text-gray-700">バレーボールの基礎から応用まで、集中的に練習してスキルを磨きます。</p>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center">
-                        <span class="text-5xl mb-4 block">🤝</span>
-                        <h4 class="text-xl font-bold palette-text-dark mb-2">チームワークの強化</h4>
-                        <p class="palette-text-dark">仲間との連携を深め、コート内外で最高のチームを目指します。</p>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 text-center card-hover sparkle">
+                        <span class="text-5xl mb-4 block animate-bounce-custom" style="animation-delay: 0.2s;">🤝</span>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">チームワークの強化</h4>
+                        <p class="text-gray-700">仲間との連携を深め、コート内外で最高のチームを目指します。</p>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center">
-                        <span class="text-5xl mb-4 block">🌱</span>
-                        <h4 class="text-xl font-bold palette-text-dark mb-2">自立心と協調性</h4>
-                        <p class="palette-text-dark">共同生活を通じて、自分のことは自分でやる力と仲間を思いやる心を育てます。</p>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 text-center card-hover sparkle">
+                        <span class="text-5xl mb-4 block animate-bounce-custom" style="animation-delay: 0.4s;">🌱</span>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">自立心と協調性</h4>
+                        <p class="text-gray-700">共同生活を通じて、自分のことは自分でやる力と仲間を思いやる心を育てます。</p>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 text-center md:col-span-2 lg:col-span-3 border-4 border-yellow-400">
-                        <span class="text-5xl mb-4 block">🏆</span>
-                        <h4 class="text-xl font-bold palette-text-accent1 mb-2">【6年生へ】最後の東京新聞杯に向けて</h4>
-                        <p class="palette-text-dark">この合宿は、最後の大きな大会に向けた重要な強化期間です。全力を出し切ろう！</p>
+                    <div class="sixth-grade-highlight rounded-xl shadow-lg p-6 text-center md:col-span-2 lg:col-span-3 card-hover">
+                        <span class="text-5xl mb-4 block animate-pulse-custom">🏆</span>
+                        <h4 class="text-xl mb-2">【6年生へ】最後の東京新聞杯に向けて</h4>
+                        <p>この合宿は、最後の大きな大会に向けた重要な強化期間です。全力を出し切ろう！</p>
                     </div>
                 </div>
             </section>
             
-            <section id="cost" class="mb-16 palette-bg-light rounded-2xl shadow-xl p-8">
-                <h3 class="text-3xl font-bold text-center mb-8 palette-text-dark">参加費について</h3>
+            <section id="cost" class="mb-16 bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 section-enter glow-effect">
+                <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">参加費について</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                    <div class="text-center">
-                        <h4 class="text-2xl font-bold palette-text-accent4 mb-4">2泊3日</h4>
+                    <div class="text-center card-hover">
+                        <h4 class="text-2xl font-bold text-blue-800 mb-4">2泊3日</h4>
                         <div class="mb-6">
-                            <p class="text-2xl font-bold palette-text-accent4">こども</p>
-                            <p class="text-5xl font-black palette-text-dark">¥9,500</p>
+                            <p class="text-2xl font-bold text-blue-800">こども</p>
+                            <p class="text-5xl font-black price-highlight">¥9,500</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold palette-text-accent1">おとな</p>
-                            <p class="text-5xl font-black palette-text-dark">¥10,500</p>
+                            <p class="text-2xl font-bold text-blue-600">おとな</p>
+                            <p class="text-5xl font-black price-highlight">¥10,500</p>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <h4 class="text-2xl font-bold palette-text-accent4 mb-4">1泊2日</h4>
+                    <div class="text-center card-hover">
+                        <h4 class="text-2xl font-bold text-blue-800 mb-4">1泊2日</h4>
                         <div class="mb-6">
-                            <p class="text-2xl font-bold palette-text-accent4">こども</p>
-                            <p class="text-5xl font-black palette-text-dark">¥5,500</p>
+                            <p class="text-2xl font-bold text-blue-800">こども</p>
+                            <p class="text-5xl font-black price-highlight">¥5,500</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold palette-text-accent1">おとな</p>
-                            <p class="text-5xl font-black palette-text-dark">¥6,500</p>
+                            <p class="text-2xl font-bold text-blue-600">おとな</p>
+                            <p class="text-5xl font-black price-highlight">¥6,500</p>
                         </div>
                     </div>
-                    <p class="text-center palette-text-dark mt-4 md:col-span-2">参加費には宿泊費、食費などが含まれています。</p>
+                    <p class="text-center text-gray-800 mt-4 md:col-span-2">参加費には宿泊費、食費などが含まれています。</p>
                 </div>
             </section>
 
-            <section id="schedule" class="mb-16">
-                <h3 class="text-3xl font-bold text-center mb-12 palette-text-light">アクション満載！合宿スケジュール</h3>
+            <section id="schedule" class="mb-16 section-enter">
+                <h3 class="text-3xl font-bold text-center mb-12 text-white text-glow">アクション満載！合宿スケジュール</h3>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6">
-                        <h4 class="text-2xl font-bold text-center palette-text-dark mb-6">1日目 (8/14)</h4>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover">
+                        <h4 class="text-2xl font-bold text-center text-gray-800 mb-6">1日目 (8/14)</h4>
                         <div class="timeline-container">
-                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">🚌</div><p class="font-bold">6:30 出発</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">📍</div><p class="font-bold">8:30 到着</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">9:00 午前練習</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">12:00 練習開始</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-red-500">🚿</div><p class="font-bold">17:30 風呂</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">18:00 夕食</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-purple-500">📝</div><p class="font-bold">20:00 ミーティング</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🚌</div><p class="font-bold">6:30 出発</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">📍</div><p class="font-bold">8:30 到着</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🏐</div><p class="font-bold">9:00 午前練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🏐</div><p class="font-bold">12:00 練習開始</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-dark-blue">🚿</div><p class="font-bold">17:30 風呂</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🍽️</div><p class="font-bold">18:00 夕食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">📝</div><p class="font-bold">20:00 ミーティング</p></div>
                             <div class="timeline-item"><div class="timeline-icon bg-gray-700">😴</div><p class="font-bold">22:00 消灯</p></div>
                         </div>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6">
-                        <h4 class="text-2xl font-bold text-center palette-text-dark mb-6">2日目 (8/15)</h4>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover">
+                        <h4 class="text-2xl font-bold text-center text-gray-800 mb-6">2日目 (8/15)</h4>
                         <div class="timeline-container">
                             <div class="timeline-item"><div class="timeline-icon bg-yellow-400">☀️</div><p class="font-bold">6:00 起床</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-blue-400">🚶</div><p class="font-bold">6:15 散歩</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">7:00 朝食</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">9:00 午前練習</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">12:00 昼食</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">13:00 午後練習</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-red-500">🚿</div><p class="font-bold">17:30 風呂</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-purple-500">📝</div><p class="font-bold">20:00 ミーティング</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🚶</div><p class="font-bold">6:15 散歩</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🍽️</div><p class="font-bold">7:00 朝食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🏐</div><p class="font-bold">9:00 午前練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🍽️</div><p class="font-bold">12:00 昼食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🏐</div><p class="font-bold">13:00 午後練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-dark-blue">🚿</div><p class="font-bold">17:30 風呂</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">📝</div><p class="font-bold">20:00 ミーティング</p></div>
                             <div class="timeline-item"><div class="timeline-icon bg-gray-700">😴</div><p class="font-bold">22:00 消灯</p></div>
                         </div>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6">
-                        <h4 class="text-2xl font-bold text-center palette-text-dark mb-6">3日目 (8/16)</h4>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover">
+                        <h4 class="text-2xl font-bold text-center text-gray-800 mb-6">3日目 (8/16)</h4>
                         <div class="timeline-container">
                             <div class="timeline-item"><div class="timeline-icon bg-yellow-400">☀️</div><p class="font-bold">6:00 起床</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-blue-400">🧹</div><p class="font-bold">6:15 掃除・片付け</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">7:00 朝食</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">9:00 午前練習</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-yellow-500">🍽️</div><p class="font-bold">12:00 昼食</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-green-500">🏐</div><p class="font-bold">13:00 午後練習</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">🚌</div><p class="font-bold">16:30 出発</p></div>
-                            <div class="timeline-item"><div class="timeline-icon bg-blue-500">🏠</div><p class="font-bold">19:00 帰宅予定</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🧹</div><p class="font-bold">6:15 掃除・片付け</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🍽️</div><p class="font-bold">7:00 朝食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🏐</div><p class="font-bold">9:00 午前練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🍽️</div><p class="font-bold">12:00 昼食</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-light-blue">🏐</div><p class="font-bold">13:00 午後練習</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🚌</div><p class="font-bold">16:30 出発</p></div>
+                            <div class="timeline-item"><div class="timeline-icon team-blue">🏠</div><p class="font-bold">19:00 帰宅予定</p></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="checklist" class="mb-16 palette-bg-light rounded-2xl shadow-xl p-8">
-                <h3 class="text-3xl font-bold text-center mb-8 palette-text-dark">準備はOK？持ち物チェックリスト</h3>
+            <section id="checklist" class="mb-16 bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-8 section-enter glow-effect">
+                <h3 class="text-3xl font-bold text-center mb-8 text-gray-800">準備はOK？持ち物チェックリスト</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-xl font-bold palette-text-accent4 mb-4">👤 個人の持ち物</h4>
+                    <div class="card-hover">
+                        <h4 class="text-xl font-bold text-blue-800 mb-4">👤 個人の持ち物</h4>
                         <ul class="space-y-2">
-                            <li class="flex items-center"><span class="mr-3">👕</span>バレーボールウェア (たくさん！)</li>
-                            <li class="flex items-center"><span class="mr-3">👟</span>体育館シューズ</li>
-                            <li class="flex items-center"><span class="mr-3">🧦</span>着替え (下着、靴下など)</li>
-                            <li class="flex items-center"><span class="mr-3">😴</span>パジャマ</li>
-                            <li class="flex items-center"><span class="mr-3">🧼</span>洗面用具</li>
-                            <li class="flex items-center"><span class="mr-3">💧</span>水筒</li>
-                            <li class="flex items-center"><span class="mr-3">🧢</span>帽子</li>
-                            <li class="flex items-center"><span class="mr-3">🦟</span>虫よけスプレー</li>
-                            <li class="flex items-center"><span class="mr-3">💊</span>常備薬</li>
-                            <li class="flex items-center"><span class="mr-3">📝</span>筆記用具</li>
-                            <li class="flex items-center"><span class="mr-3">📄</span>健康保険証のコピー</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">👕</span>バレーボールウェア (たくさん！)</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">👟</span>体育館シューズ</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🧦</span>着替え (下着、靴下など)</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">😴</span>パジャマ</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🧼</span>洗面用具</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">💧</span>水筒</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🧢</span>帽子</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🦟</span>虫よけスプレー</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">💊</span>常備薬</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">📝</span>筆記用具</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">📄</span>健康保険証のコピー</li>
                         </ul>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-bold palette-text-accent1 mb-4">🤝 チームの持ち物</h4>
+                    <div class="card-hover">
+                        <h4 class="text-xl font-bold text-blue-600 mb-4">🤝 チームの持ち物</h4>
                         <ul class="space-y-2">
-                            <li class="flex items-center"><span class="mr-3">🏐</span>ボール</li>
-                            <li class="flex items-center"><span class="mr-3">🧺</span>ボールかご</li>
-                            <li class="flex items-center"><span class="mr-3">🌐</span>ネット</li>
-                            <li class="flex items-center"><span class="mr-3">⏱️</span>タイマー</li>
-                            <li class="flex items-center"><span class="mr-3">📏</span>メジャー</li>
-                            <li class="flex items-center"><span class="mr-3">テープ</span>ラインテープ</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🏐</span>ボール</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🧺</span>ボールかご</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">🌐</span>ネット</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">⏱️</span>タイマー</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">📏</span>メジャー</li>
+                            <li class="flex items-center transition-all duration-300 hover:transform hover:translateX-2"><span class="mr-3">テープ</span>ラインテープ</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section id="reminders">
-                <h3 class="text-3xl font-bold text-center mb-8 palette-text-light">大切なこと：みんなで守ろう！</h3>
+            <section id="reminders" class="section-enter">
+                <h3 class="text-3xl font-bold text-center mb-8 text-white text-glow">大切なこと：みんなで守ろう！</h3>
                 <div class="space-y-8">
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 flex items-start">
-                        <span class="text-4xl mr-4">👨‍👩‍👧‍👦</span>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 flex items-start card-hover">
+                        <span class="text-4xl mr-4 animate-bounce-custom">👨‍👩‍👧‍👦</span>
                         <div>
-                            <h4 class="text-xl font-bold palette-text-dark mb-2">保護者の皆様へのお願い</h4>
-                            <p class="palette-text-dark">この合宿は子どもたちの自立を促す貴重な機会です。困ったことがあれば、自分の親ではなく指導者に相談するようお子様の背中を押してあげてください。皆様にはボランティアとして、そして合宿を楽しむ一員としてのご参加をお願いいたします！</p>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">保護者の皆様へのお願い</h4>
+                            <p class="text-gray-700">この合宿は子どもたちの自立を促す貴重な機会です。困ったことがあれば、自分の親ではなく指導者に相談するようお子様の背中を押してあげてください。皆様にはボランティアとして、そして合宿を楽しむ一員としてのご参加をお願いいたします！</p>
                         </div>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 flex items-start">
-                        <span class="text-4xl mr-4">☀️</span>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 flex items-start card-hover">
+                        <span class="text-4xl mr-4 animate-bounce-custom" style="animation-delay: 0.2s;">☀️</span>
                         <div>
-                            <h4 class="text-xl font-bold palette-text-dark mb-2">暑さ対策について</h4>
-                            <p class="palette-text-dark">体育館にエアコンはありません。こまめな水分補給と休憩を徹底し、熱中症を防ぎます。汗をたくさんかくので、着替えは多めに持ってきてください！</p>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">暑さ対策について</h4>
+                            <p class="text-gray-700">体育館にエアコンはありません。こまめな水分補給と休憩を徹底し、熱中症を防ぎます。汗をたくさんかくので、着替えは多めに持ってきてください！</p>
                         </div>
                     </div>
-                    <div class="palette-bg-light rounded-xl shadow-lg p-6 flex items-start">
-                        <span class="text-4xl mr-4">🚫</span>
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-6 flex items-start card-hover">
+                        <span class="text-4xl mr-4 animate-bounce-custom" style="animation-delay: 0.4s;">🚫</span>
                         <div>
-                            <h4 class="text-xl font-bold palette-text-dark mb-2">禁止事項</h4>
-                            <p class="palette-text-dark">子どもの個人的なお菓子の持ち込みはご遠慮ください。食事や補食はチームで管理します。</p>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">禁止事項</h4>
+                            <p class="text-gray-700">子どもの個人的なお菓子の持ち込みはご遠慮ください。食事や補食はチームで管理します。</p>
                         </div>
                     </div>
                 </div>
@@ -251,13 +524,113 @@
         </main>
 
         <footer class="text-center mt-16 py-8">
-            <p class="palette-text-light font-bold">三大小ジュニアバレーボールクラブ 事務局</p>
+            <p class="text-white font-bold text-glow animate-pulse-custom">三大小ジュニアバレーボールクラブ 事務局</p>
         </footer>
 
     </div>
 
     <script>
-        // No Chart.js code needed as the chart has been removed.
+        // Floating volleyball animation
+        const floatingBall = document.getElementById('floatingBall');
+        let mouseX = 0, mouseY = 0;
+        let ballX = 0, ballY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateBall() {
+            ballX += (mouseX - ballX) * 0.1;
+            ballY += (mouseY - ballY) * 0.1;
+            
+            floatingBall.style.left = ballX + 'px';
+            floatingBall.style.top = ballY + 'px';
+            
+            requestAnimationFrame(animateBall);
+        }
+        animateBall();
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-enter').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dynamic messages for countdown
+        const messages = [
+            "お楽しみに！",
+            "準備は進んでいますか？",
+            "みんなで最高の夏にしよう！",
+            "技術向上のチャンス！",
+            "新しい仲間との出会い",
+            "思い出に残る3日間",
+            "バレーボール漬けの日々",
+            "成長できる貴重な時間",
+            "チームワークを深めよう",
+            "自立心を育む機会",
+            "君津の自然を満喫",
+            "最高の仲間と過ごそう"
+        ];
+
+        let currentMessageIndex = 0;
+
+        function updateDynamicMessage() {
+            const messageElement = document.getElementById('dynamicMessage');
+            messageElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                messageElement.textContent = messages[currentMessageIndex];
+                messageElement.style.opacity = '1';
+                currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            }, 250);
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const campDate = new Date('2025-08-14');
+            const now = new Date();
+            const difference = campDate - now;
+            const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('countdown').textContent = days + '日';
+        }
+
+        // Initialize countdown and start message rotation
+        updateCountdown();
+        setInterval(updateDynamicMessage, 3000); // Change message every 3 seconds
+
+        // Add click effects to cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Add sparkle effect on hover
+        document.querySelectorAll('.sparkle').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+        });
     </script>
 
 </body>
