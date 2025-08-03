@@ -581,8 +581,34 @@
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
             setInterval(updateCountdownMessage, 3000);
+            updateCountdown();
+            setInterval(updateCountdown, 1000); // 1秒ごとに更新
             initializeQuiz();
         });
+
+        // Real-time countdown function
+        function updateCountdown() {
+            const campDate = new Date('2025-08-14T00:00:00'); // 合宿開始日（8月14日の0時）
+            const now = new Date();
+            
+            // 今日の日付を取得（時間は0時に設定）
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const campDay = new Date(2025, 7, 14); // 8月14日（月は0から始まるので7）
+            
+            // 日数の差を計算
+            const timeDiff = campDay - today;
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            
+            if (days < 0) {
+                document.getElementById('countdown').textContent = '合宿中！';
+                return;
+            } else if (days === 0) {
+                document.getElementById('countdown').textContent = '今日！';
+                return;
+            }
+            
+            document.getElementById('countdown').textContent = `${days}日`;
+        }
 
         // Quiz functionality
         const quizQuestions = [
