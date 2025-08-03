@@ -241,20 +241,28 @@
                                 <div class="font-semibold">9:00 午前練習</div>
                             </div>
                             <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">12:00 練習開始</div>
+                                <div class="timeline-icon">🍽️</div>
+                                <div class="font-semibold">12:00 昼食</div>
                             </div>
                             <div class="timeline-item">
-                                <div class="timeline-icon">🚿</div>
-                                <div class="font-semibold">17:30 風呂</div>
+                                <div class="timeline-icon">🏐</div>
+                                <div class="font-semibold">13:00 午後の練習開始</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">18:00 夕食</div>
+                                <div class="font-semibold">17:30 夕食</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">🚿</div>
+                                <div class="font-semibold">18:30 入浴</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">🎆</div>
+                                <div class="font-semibold">20:00 花火</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">📝</div>
-                                <div class="font-semibold">20:00 ミーティング</div>
+                                <div class="font-semibold">21:00 ミーティング</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">😴</div>
@@ -288,16 +296,24 @@
                                 <div class="font-semibold">12:00 昼食</div>
                             </div>
                             <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">13:00 午後練習</div>
+                                <div class="timeline-icon">🍉</div>
+                                <div class="font-semibold">13:00 スイカ割り大会</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">🍽️</div>
+                                <div class="font-semibold">17:30 夕食</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">🚿</div>
-                                <div class="font-semibold">17:30 風呂</div>
+                                <div class="font-semibold">18:30 風呂</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">🎮</div>
+                                <div class="font-semibold">19:30 レクリエーション</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">📝</div>
-                                <div class="font-semibold">20:00 ミーティング</div>
+                                <div class="font-semibold">20:30 ミーティング</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-icon">😴</div>
@@ -432,29 +448,6 @@
                 </div>
             </div>
 
-            <!-- Quiz Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">🧠 バレーボールクイズに挑戦！</h3>
-                <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                    <div id="quizContainer">
-                        <h4 class="text-3xl font-bold text-gray-800 mb-6" id="quizQuestion">問題を読み込み中...</h4>
-                        <div id="quizOptions" class="grid grid-cols-1 gap-4 mb-6">
-                            <!-- Options will be inserted here -->
-                        </div>
-                        <div id="quizResult" class="text-center mb-4">
-                            <!-- Result will be shown here -->
-                        </div>
-                        <div class="text-center">
-                            <button id="nextQuizBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300" style="display: none;">次の問題</button>
-                            <button id="restartQuizBtn" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300" style="display: none;">もう一度挑戦</button>
-                        </div>
-                        <div class="text-center mt-4">
-                            <div class="text-lg font-semibold text-gray-700">スコア: <span id="quizScore">0</span> / <span id="quizTotal">5</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Important Notes Section -->
             <div class="mb-8">
                 <h3 class="text-4xl font-bold text-white text-center mb-8">大切なこと：みんなで守ろう！</h3>
@@ -551,259 +544,8 @@
             }, 250);
         }
 
-        // Quiz functionality
-        const quizQuestions = [
-            {
-                question: "バレーボールのコートで、1チームは何人でプレイするでしょうか？",
-                options: ["5人", "6人", "7人", "8人"],
-                correct: 1,
-                explanation: "正解！バレーボールは1チーム6人でプレイします。🏐"
-            },
-            {
-                question: "バレーボールで、ボールを相手コートに返すまでに何回まで触ることができるでしょうか？",
-                options: ["2回", "3回", "4回", "5回"],
-                correct: 1,
-                explanation: "正解！3回まで触ることができます。アタック、レシーブ、トスなどを組み合わせます！✨"
-            },
-            {
-                question: "バレーボールのネットの高さは、小学生の場合どのくらいでしょうか？",
-                options: ["2m", "2m10cm", "2m20cm", "2m30cm"],
-                correct: 0,
-                explanation: "正解！小学生は2mです。中学生以上は2m43cmになります！📏"
-            },
-            {
-                question: "バレーボールで、相手のアタックを防ぐ技術を何と呼ぶでしょうか？",
-                options: ["スパイク", "ブロック", "レシーブ", "サーブ"],
-                correct: 1,
-                explanation: "正解！ブロックです。ネット際でジャンプして相手のアタックを止めます！🛡️"
-            },
-            {
-                question: "バレーボールの試合開始時に行う技術は何でしょうか？",
-                options: ["アタック", "トス", "サーブ", "レシーブ"],
-                correct: 2,
-                explanation: "正解！サーブです。相手コートにボールを打ち込んで試合を始めます！🎯"
-            },
-            {
-                question: "バレーボールで、アタッカーにボールを上げる技術を何と呼ぶでしょうか？",
-                options: ["スパイク", "トス", "ブロック", "ディグ"],
-                correct: 1,
-                explanation: "正解！トスです。アタッカーが打ちやすいようにボールを上げる大切な技術です！🎈"
-            },
-            {
-                question: "バレーボールのポジションで、主に相手から点をとる選手を何と呼ぶでしょうか？",
-                options: ["セッター", "レシーバー", "アタッカー", "ミドルブロッカー"],
-                correct: 2,
-                explanation: "正解！アタッカーです。強いスパイクで得点を狙います！💥"
-            },
-            {
-                question: "バレーボールで、小学生の1セットは何点先取で勝利でしょうか？",
-                options: ["21点", "25点", "30点", "15点"],
-                correct: 0,
-                explanation: "正解！小学生は21点先取です（ただし2点差をつける必要があります）！🏆"
-            },
-            {
-                question: "バレーボールで、同じ選手が連続してボールに触ることはできるでしょうか？",
-                options: ["できる", "できない", "2回まで", "審判次第"],
-                correct: 1,
-                explanation: "正解！同じ選手が連続してボールに触ることはできません（ブロック後は除く）！🚫"
-            },
-            {
-                question: "小学生バレーボールのコートの大きさはどのくらいでしょうか？",
-                options: ["8m×8m", "9m×9m", "10m×10m", "12m×12m"],
-                correct: 0,
-                explanation: "正解！小学生バレーボールのコートは8m×8mです。一般は18m×9mですが、小学生は小さめです！📐"
-            },
-            {
-                question: "バレーボールで、サーブを打つ場所はどこでしょうか？",
-                options: ["コート内", "エンドライン後ろ", "ネット前", "サイドライン"],
-                correct: 1,
-                explanation: "正解！サーブはエンドラインの後ろから打ちます！🎯"
-            },
-            {
-                question: "バレーボールのタイムアウトの時間は何秒でしょうか？",
-                options: ["30秒", "60秒", "90秒", "120秒"],
-                correct: 0,
-                explanation: "正解！タイムアウトの時間は30秒です。短い時間で作戦を立てましょう！⏰"
-            },
-            {
-                question: "バレーボールの試合で、何セット先取すると勝利でしょうか？",
-                options: ["1セット", "2セット", "3セット", "4セット"],
-                correct: 1,
-                explanation: "正解！2セット先取で勝利です。3セットマッチで行われることが多いです！🏆"
-            },
-            {
-                question: "サーブを打つとき、エンドラインを踏んでもよいでしょうか？",
-                options: ["踏んでもよい", "踏んではダメ", "片足だけなら良い", "審判次第"],
-                correct: 1,
-                explanation: "正解！エンドラインを踏んではダメです。ラインの後ろから打ちましょう！🚫"
-            },
-            {
-                question: "サーブはいつ打っていいでしょうか？",
-                options: ["ホイッスルがなってから", "準備できたらすぐ", "コーチが打てといったら", "気分しだい"],
-                correct: 0,
-                explanation: "正解！ホイッスルがなってから打ちます。審判の合図を待ちましょう！🎵"
-            },
-            {
-                question: "アタッカーにトスを上げる選手を何というでしょうか？",
-                options: ["セッター", "レシーバー", "ブロッカー", "リベロ"],
-                correct: 0,
-                explanation: "正解！セッターです。チームの司令塔として、アタッカーが打ちやすいトスを上げます！🎯"
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let selectedQuestions = [];
-
-        function shuffleArray(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
-
-        function initializeQuiz() {
-            selectedQuestions = shuffleArray(quizQuestions).slice(0, 5);
-            currentQuestionIndex = 0;
-            score = 0;
-            updateScore();
-            showQuestion();
-        }
-
-        function showQuestion() {
-            const question = selectedQuestions[currentQuestionIndex];
-            const questionElement = document.getElementById('quizQuestion');
-            const optionsElement = document.getElementById('quizOptions');
-            const resultElement = document.getElementById('quizResult');
-            const nextBtn = document.getElementById('nextQuizBtn');
-
-            questionElement.innerHTML = `<h4 class="text-3xl font-bold text-gray-800 mb-4">問題 ${currentQuestionIndex + 1}</h4><p class="text-xl text-gray-700">${question.question}</p>`;
-
-            optionsElement.innerHTML = '';
-            question.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.className = 'bg-gray-100 hover:bg-gray-200 text-gray-800 p-4 rounded-lg text-left transition-colors duration-300';
-                button.textContent = option;
-                button.onclick = () => selectAnswer(index);
-                optionsElement.appendChild(button);
-            });
-
-            resultElement.innerHTML = '';
-            nextBtn.style.display = 'none';
-        }
-
-        function selectAnswer(selectedIndex) {
-            const question = selectedQuestions[currentQuestionIndex];
-            const optionsElement = document.getElementById('quizOptions');
-            const resultElement = document.getElementById('quizResult');
-            const nextBtn = document.getElementById('nextQuizBtn');
-            const buttons = optionsElement.querySelectorAll('button');
-
-            buttons.forEach((button, index) => {
-                button.disabled = true;
-                if (index === question.correct) {
-                    button.className = 'bg-green-500 text-white p-4 rounded-lg text-left';
-                } else if (index === selectedIndex && index !== question.correct) {
-                    button.className = 'bg-red-500 text-white p-4 rounded-lg text-left';
-                } else {
-                    button.className = 'bg-gray-300 text-gray-600 p-4 rounded-lg text-left';
-                }
-            });
-
-            if (selectedIndex === question.correct) {
-                score++;
-                updateScore();
-                resultElement.innerHTML = `<div class="text-green-600 font-semibold text-lg">${question.explanation}</div>`;
-            } else {
-                resultElement.innerHTML = `<div class="text-red-600 font-semibold text-lg">残念！正解は「${question.options[question.correct]}」でした。<br>${question.explanation}</div>`;
-            }
-
-            if (currentQuestionIndex < selectedQuestions.length - 1) {
-                nextBtn.style.display = 'inline-block';
-            } else {
-                setTimeout(() => {
-                    showFinalResult();
-                }, 2000);
-            }
-        }
-
-        function nextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < selectedQuestions.length) {
-                showQuestion();
-            } else {
-                showFinalResult();
-            }
-        }
-
-        function showFinalResult() {
-            const questionElement = document.getElementById('quizQuestion');
-            const optionsElement = document.getElementById('quizOptions');
-            const resultElement = document.getElementById('quizResult');
-            const nextBtn = document.getElementById('nextQuizBtn');
-            const restartBtn = document.getElementById('restartQuizBtn');
-
-            const percentage = Math.round((score / selectedQuestions.length) * 100);
-            let message = '';
-            let emoji = '';
-            let specialMessage = '';
-
-            if (percentage === 100) {
-                message = 'パーフェクト！バレーボールマスターです！';
-                emoji = '🏆';
-                specialMessage = '<div class="text-2xl font-bold text-red-600 mt-4 animate-bounce-custom">🎉 コーチに報告しよう！ 🎉</div>';
-            } else if (percentage >= 80) {
-                message = 'すごい！バレーボール博士ですね！';
-                emoji = '🏆';
-            } else if (percentage >= 60) {
-                message = 'よくできました！もう少しで完璧です！';
-                emoji = '🎉';
-            } else if (percentage >= 40) {
-                message = 'がんばりました！練習すればもっと上達しますよ！';
-                emoji = '💪';
-            } else {
-                message = 'まだまだこれから！バレーボールを楽しく学びましょう！';
-                emoji = '📚';
-            }
-
-            questionElement.innerHTML = `
-                <h4 class="text-3xl font-bold text-gray-800 mb-4">${emoji} クイズ完了！</h4>
-            `;
-
-            optionsElement.innerHTML = '';
-
-            resultElement.innerHTML = `
-                <div class="text-center">
-                    <div class="text-4xl font-black text-blue-600 mb-4">${score} / ${selectedQuestions.length} 問正解！</div>
-                    <div class="text-2xl font-bold text-gray-800 mb-4">${message}</div>
-                    <div class="text-lg text-gray-600">正解率: ${percentage}%</div>
-                    ${specialMessage}
-                </div>
-            `;
-
-            nextBtn.style.display = 'none';
-            restartBtn.style.display = 'inline-block';
-        }
-
-        function restartQuiz() {
-            initializeQuiz();
-            document.getElementById('restartQuizBtn').style.display = 'none';
-        }
-
-        function updateScore() {
-            document.getElementById('quizScore').textContent = score;
-            document.getElementById('quizTotal').textContent = selectedQuestions.length;
-        }
-
-        // Event listeners
-        document.getElementById('nextQuizBtn').addEventListener('click', nextQuestion);
-        document.getElementById('restartQuizBtn').addEventListener('click', restartQuiz);
-
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            initializeQuiz();
             setInterval(updateCountdownMessage, 3000);
         });
     </script>
