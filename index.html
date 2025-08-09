@@ -1,849 +1,493 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三大小ジュニアバレーボールクラブ 夏合宿インフォグラフィック</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            animation: gradientShift 8s ease-in-out infinite;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <title>三大小ジュニアバレーボールクラブ 夏合宿インフォグラフィック</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg1:#1e3a8a;--bg2:#1d4ed8;--bg3:#2563eb}
+    html,body{height:100%}
+    body{margin:0;padding:0;font-family:'Inter','Noto Sans JP',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans',"Apple Color Emoji","Segoe UI Emoji";background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);background-attachment:fixed;min-height:100vh}
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @media (prefers-reduced-motion:no-preference){body{animation:gradientShift 8s ease-in-out infinite}}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    .floating-ball{position:fixed;width:30px;height:30px;background:linear-gradient(45deg,var(--bg1),var(--bg3));border-radius:50%;pointer-events:none;z-index:1000;transition:transform .12s ease, left .1s ease, top .1s ease;box-shadow:0 0 10px rgba(37,99,235,.5)}
+    .card-hover{transition:transform .2s ease, box-shadow .2s ease}
+    .card-hover:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 18px 36px rgba(0,0,0,.18)}
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+    .timeline-item{position:relative;padding-left:40px;margin-bottom:20px}
+    .timeline-item::before{content:'';position:absolute;left:15px;top:0;bottom:-20px;width:2px;background:linear-gradient(to bottom,var(--bg1),var(--bg3))}
+    .timeline-item:last-child::before{display:none}
+    .timeline-icon{position:absolute;left:0;top:0;width:30px;height:30px;background:linear-gradient(45deg,var(--bg1),var(--bg3));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;box-shadow:0 2px 10px rgba(30,58,138,.3)}
 
-        @keyframes bounce-custom {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+    .sparkle{position:absolute;width:4px;height:4px;background:#fbbf24;border-radius:50%;opacity:0}
+    @keyframes sparkle{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
 
-        .animate-bounce-custom {
-            animation: bounce-custom 1s infinite;
-        }
-
-        .floating-ball {
-            position: fixed;
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(45deg, #1e3a8a, #2563eb);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-            transition: all 0.1s ease;
-            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fbbf24;
-            border-radius: 50%;
-            animation: sparkle 1.5s infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
-        .card-hover:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 20px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: -20px;
-            width: 2px;
-            background: linear-gradient(to bottom, #1e3a8a, #2563eb);
-        }
-
-        .timeline-item:last-child::before {
-            display: none;
-        }
-
-        .timeline-icon {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(45deg, #1e3a8a, #2563eb);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            box-shadow: 0 2px 10px rgba(30, 58, 138, 0.3);
-        }
-    </style>
+    /* アニメーション配慮 */
+    @media (prefers-reduced-motion:reduce){
+      *, *::before, *::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition: none !important}
+    }
+  </style>
 </head>
 <body>
-    <div class="floating-ball" id="floatingBall"></div>
-    
-    <div class="min-h-screen">
-        <!-- Header Section -->
-        <div class="container mx-auto px-4 py-8">
-            <div class="bg-white bg-opacity-95 rounded-3xl shadow-2xl p-8 mb-8 card-hover transition-all duration-300">
-                <div class="text-center">
-                    <h1 class="text-5xl font-black text-gray-800 mb-4">
-                        最高の夏にしよう！
-                    </h1>
-                    <h2 class="text-3xl font-bold text-blue-600 mb-6">
-                        三大小ジュニアバレーボールクラブ 夏合宿 2025
-                    </h2>
-                    <div class="flex items-center justify-center text-gray-600 mb-4">
-                        <span class="text-2xl mr-2">📅</span>
-                        <span class="text-xl">2025年8月14日(木) ～ 8月16日(土)</span>
-                        <span class="text-2xl ml-2">📅</span>
-                    </div>
-                    <div class="flex items-center justify-center text-red-500 mb-6">
-                        <span class="text-xl mr-2">📍</span>
-                        <span class="text-lg">千葉県君津市亀山青少年自然の家</span>
-                    </div>
-                    
-                    <!-- Countdown Timer -->
-                    <div class="bg-blue-500 text-white rounded-2xl p-6 mb-6">
-                        <div class="text-lg mb-2">合宿まであと</div>
-                        <div class="text-6xl font-black mb-2" id="countdown">12日</div>
-                        <div class="text-lg" id="countdownMessage">お楽しみに！</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Purpose Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">合宿の目的：みんなでレベルアップ！</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">💪</div>
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4">技術の向上</h4>
-                            <p class="text-gray-600">バレーボールの基礎から応用まで、集中的に練習してスキルを磨きます。</p>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">🤝</div>
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4">チームワークの強化</h4>
-                            <p class="text-gray-600">仲間との連携を深め、コート内外で最高のチームを目指します。</p>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">🌱</div>
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4">自立心と協調性</h4>
-                            <p class="text-gray-600">共同生活を通じて、自分のことは自分でやる力と仲間を思いやる心を育てます。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Special Message for 6th Graders -->
-            <div class="mb-8">
-                <div class="bg-gradient-to-r from-cyan-100 to-sky-200 border-4 border-orange-500 rounded-2xl p-6 shadow-lg">
-                    <div class="text-center">
-                        <div class="text-4xl mb-2">🏆</div>
-                        <h4 class="text-2xl font-bold text-blue-900 mb-2">【6年生へ】最後の東京新聞杯に向けて</h4>
-                        <p class="text-blue-800 text-lg">この合宿は、最後の大きな大会に向けた重要な強化期間です。全力を出し切ろう！</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Price Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">参加費について</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <h4 class="text-3xl font-bold text-gray-800 mb-4">2泊3日</h4>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="text-lg text-gray-600">こども</div>
-                                    <div class="text-4xl font-black text-blue-600">¥9,500</div>
-                                </div>
-                                <div>
-                                    <div class="text-lg text-gray-600">おとな</div>
-                                    <div class="text-4xl font-black text-blue-600">¥10,500</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <h4 class="text-3xl font-bold text-gray-800 mb-4">1泊2日</h4>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="text-lg text-gray-600">こども</div>
-                                    <div class="text-4xl font-black text-blue-600">¥5,500</div>
-                                </div>
-                                <div>
-                                    <div class="text-lg text-gray-600">おとな</div>
-                                    <div class="text-4xl font-black text-blue-600">¥6,500</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-6">
-                    <p class="text-white text-lg">参加費には宿泊費、食費などが含まれています。</p>
-                </div>
-            </div>
-
-            <!-- Schedule Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">アクション満載！合宿スケジュール</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Day 1 -->
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">1日目 (8/14)</h4>
-                        <div class="space-y-3">
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🚌</div>
-                                <div class="font-semibold">6:30 出発</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">📍</div>
-                                <div class="font-semibold">8:30 到着</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">9:00 午前練習</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">12:00 昼食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">13:00 午後の練習開始</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">17:30 夕食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🚿</div>
-                                <div class="font-semibold">18:30 入浴</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🎆</div>
-                                <div class="font-semibold">20:00 花火</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">📝</div>
-                                <div class="font-semibold">21:00 ミーティング</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">😴</div>
-                                <div class="font-semibold">22:00 消灯</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Day 2 -->
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">2日目 (8/15)</h4>
-                        <div class="space-y-3">
-                            <div class="timeline-item">
-                                <div class="timeline-icon">☀️</div>
-                                <div class="font-semibold">6:00 起床</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🚶</div>
-                                <div class="font-semibold">6:15 散歩</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">7:00 朝食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">9:00 午前練習</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">12:00 昼食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍉</div>
-                                <div class="font-semibold">13:00 スイカ割り大会</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">17:30 夕食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🚿</div>
-                                <div class="font-semibold">18:30 風呂</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🎮</div>
-                                <div class="font-semibold">19:30 レクリエーション</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">📝</div>
-                                <div class="font-semibold">20:30 ミーティング</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">😴</div>
-                                <div class="font-semibold">22:00 消灯</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Day 3 -->
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">3日目 (8/16)</h4>
-                        <div class="space-y-3">
-                            <div class="timeline-item">
-                                <div class="timeline-icon">☀️</div>
-                                <div class="font-semibold">6:00 起床</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🧹</div>
-                                <div class="font-semibold">6:15 掃除・片付け</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">7:00 朝食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">9:00 午前練習</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🍽️</div>
-                                <div class="font-semibold">12:00 昼食</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🏐</div>
-                                <div class="font-semibold">13:00 午後練習</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🚌</div>
-                                <div class="font-semibold">16:30 出発</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-icon">🏠</div>
-                                <div class="font-semibold">19:00 帰宅予定</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Packing List Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">準備はOK？持ち物チェックリスト</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4">👤 個人の持ち物</h4>
-                        <div class="grid grid-cols-2 gap-2 text-sm">
-                            <div class="flex items-center space-x-2">
-                                <span>👕</span>
-                                <span>バレーボールウェア (たくさん！)</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>👟</span>
-                                <span>体育館シューズ</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>🧦</span>
-                                <span>着替え (下着、靴下など)</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>😴</span>
-                                <span>パジャマ</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>🧼</span>
-                                <span>洗面用具</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>💧</span>
-                                <span>水筒</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>🧢</span>
-                                <span>帽子</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>🦟</span>
-                                <span>虫よけスプレー</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>💊</span>
-                                <span>常備薬</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>📝</span>
-                                <span>筆記用具</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>📄</span>
-                                <span>健康保険証のコピー</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4">🤝 チームの持ち物</h4>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex items-center space-x-2">
-                                <span>🏐</span>
-                                <span>ボール</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>🧺</span>
-                                <span>ボールかご</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>🌐</span>
-                                <span>ネット</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>⏱️</span>
-                                <span>タイマー</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>📏</span>
-                                <span>メジャー</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span>📏</span>
-                                <span>テープ ラインテープ</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quiz Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">🧠 バレーボールクイズに挑戦！</h3>
-                <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                    <div id="quizContainer">
-                        <div id="questionContainer">
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4" id="questionTitle">問題 1</h4>
-                            <p class="text-lg text-gray-700 mb-6" id="questionText">バレーボールのポジションで、主に相手から点をとる選手を何と呼ぶでしょうか？</p>
-                            <div class="grid grid-cols-2 gap-4 mb-6" id="optionsContainer">
-                                <button class="quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg transition-all duration-200" data-answer="0">セッター</button>
-                                <button class="quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg transition-all duration-200" data-answer="1">レシーバー</button>
-                                <button class="quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg transition-all duration-200" data-answer="2">アタッカー</button>
-                                <button class="quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg transition-all duration-200" data-answer="3">ミドルブロッカー</button>
-                            </div>
-                        </div>
-                        <div id="resultContainer" class="hidden">
-                            <div id="answerFeedback" class="mb-4"></div>
-                            <div id="explanation" class="text-gray-600 mb-4"></div>
-                            <button id="nextButton" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200">次の問題</button>
-                        </div>
-                        <div id="finalResult" class="hidden text-center">
-                            <h4 class="text-3xl font-bold text-gray-800 mb-4">クイズ完了！</h4>
-                            <div id="scoreDisplay" class="text-2xl font-bold text-blue-600 mb-4"></div>
-                            <div id="scoreMessage" class="text-lg text-gray-700 mb-4"></div>
-                            <div id="perfectScoreMessage" class="hidden text-2xl font-bold text-red-600 mb-4 animate-bounce">🎉 コーチに報告しよう！ 🎉</div>
-                            <button id="restartButton" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-200">もう一度挑戦</button>
-                        </div>
-                        <div class="text-center mt-4">
-                            <div class="text-lg font-semibold text-gray-700">スコア: <span id="currentScore">0</span> / 5</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Important Notes Section -->
-            <div class="mb-8">
-                <h3 class="text-4xl font-bold text-white text-center mb-8">大切なこと：みんなで守ろう！</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">👨‍👩‍👧‍👦</div>
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4">保護者の皆様へのお願い</h4>
-                            <p class="text-gray-600">この合宿は子どもたちの自立を促す貴重な機会です。困ったことがあれば、自分の親ではなく指導者に相談するようお子様の背中を押してあげてください。皆様にはボランティアとして、そして合宿を楽しむ一員としてのご参加をお願いいたします！</p>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">☀️</div>
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4">暑さ対策について</h4>
-                            <p class="text-gray-600">体育館にエアコンはありません。こまめな水分補給と休憩を徹底し、熱中症を防ぎます。汗をたくさんかくので、着替えは多めに持ってきてください！</p>
-                        </div>
-                    </div>
-                    <div class="bg-white bg-opacity-95 rounded-2xl p-6 card-hover transition-all duration-300">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">🚫</div>
-                            <h4 class="text-2xl font-bold text-gray-800 mb-4">禁止事項</h4>
-                            <p class="text-gray-600">子どもの個人的なお菓子の持ち込みはご遠慮ください。食事や補食はチームで管理します。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:p-2 focus:bg-white focus:rounded-lg">本文へスキップ</a>
+  <div class="floating-ball" id="floatingBall" aria-hidden="true"></div>
+  <header class="container mx-auto px-4 py-8">
+    <div class="bg-white/95 rounded-3xl shadow-2xl p-8 mb-8 card-hover">
+      <div class="text-center">
+        <h1 class="text-5xl font-black text-gray-800 mb-4">最高の夏にしよう！</h1>
+        <p class="text-3xl font-bold text-blue-600 mb-6">三大小ジュニアバレーボールクラブ 夏合宿 2025</p>
+        <div class="flex items-center justify-center text-gray-700 mb-4" aria-label="日程">
+          <span class="text-2xl mr-2" aria-hidden="true">📅</span>
+          <span class="text-xl">2025年8月14日(木) ～ 8月16日(土)</span>
+          <span class="text-2xl ml-2" aria-hidden="true">📅</span>
         </div>
+        <div class="flex items-center justify-center text-red-600 mb-6" aria-label="場所">
+          <span class="text-xl mr-2" aria-hidden="true">📍</span>
+          <span class="text-lg">千葉県君津市 亀山青少年自然の家</span>
+        </div>
+        <!-- Countdown -->
+        <section aria-live="polite" class="bg-blue-600 text-white rounded-2xl p-6 mb-2">
+          <p class="text-lg mb-2">合宿まであと</p>
+          <p class="text-6xl font-black mb-2" id="countdown" aria-label="残り日数">—</p>
+          <p class="text-lg" id="countdownMessage">お楽しみに！</p>
+        </section>
+      </div>
     </div>
+  </header>
 
-    <script>
-        // Floating ball that follows mouse
-        const floatingBall = document.getElementById('floatingBall');
-        let mouseX = 0, mouseY = 0;
-        let ballX = 0, ballY = 0;
+  <main id="main" class="min-h-screen">
+    <div class="container mx-auto px-4 pb-10">
+      <!-- Purpose -->
+      <section class="mb-8" aria-labelledby="purpose">
+        <h2 id="purpose" class="text-4xl font-bold text-white text-center mb-8">合宿の目的：みんなでレベルアップ！</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="bg-white/95 rounded-2xl p-6 card-hover text-center">
+            <div class="text-6xl mb-4" aria-hidden="true">💪</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">技術の向上</h3>
+            <p class="text-gray-700">基礎から応用まで集中的に練習してスキルを磨きます。</p>
+          </article>
+          <article class="bg-white/95 rounded-2xl p-6 card-hover text-center">
+            <div class="text-6xl mb-4" aria-hidden="true">🤝</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">チームワークの強化</h3>
+            <p class="text-gray-700">仲間との連携を深め、コート内外で最高のチームを目指します。</p>
+          </article>
+          <article class="bg-white/95 rounded-2xl p-6 card-hover text-center">
+            <div class="text-6xl mb-4" aria-hidden="true">🌱</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">自立心と協調性</h3>
+            <p class="text-gray-700">共同生活を通じて、自分のことは自分でやる力と仲間を思いやる心を育てます。</p>
+          </article>
+        </div>
+      </section>
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+      <!-- 6th graders note -->
+      <section class="mb-8" aria-labelledby="sixth">
+        <div class="bg-gradient-to-r from-cyan-100 to-sky-200 border-4 border-orange-500 rounded-2xl p-6 shadow-lg text-center">
+          <div class="text-4xl mb-2" aria-hidden="true">🏆</div>
+          <h3 id="sixth" class="text-2xl font-bold text-blue-900 mb-2">【6年生へ】最後の東京新聞杯に向けて</h3>
+          <p class="text-blue-800 text-lg">この合宿は、最後の大きな大会に向けた重要な強化期間です。全力を出し切ろう！</p>
+        </div>
+      </section>
 
-        function animateBall() {
-            ballX += (mouseX - ballX) * 0.1;
-            ballY += (mouseY - ballY) * 0.1;
-            
-            floatingBall.style.left = ballX + 'px';
-            floatingBall.style.top = ballY + 'px';
-            
-            requestAnimationFrame(animateBall);
+      <!-- Price -->
+      <section class="mb-8" aria-labelledby="price">
+        <h2 id="price" class="text-4xl font-bold text-white text-center mb-8">参加費について</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white/95 rounded-2xl p-6 card-hover text-center" role="group" aria-label="2泊3日 料金">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">2泊3日</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="text-lg text-gray-600">こども</p>
+                <p class="text-4xl font-black text-blue-600">¥9,500</p>
+              </div>
+              <div>
+                <p class="text-lg text-gray-600">おとな</p>
+                <p class="text-4xl font-black text-blue-600">¥10,500</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white/95 rounded-2xl p-6 card-hover text-center" role="group" aria-label="1泊2日 料金">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">1泊2日</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="text-lg text-gray-600">こども</p>
+                <p class="text-4xl font-black text-blue-600">¥5,500</p>
+              </div>
+              <div>
+                <p class="text-lg text-gray-600">おとな</p>
+                <p class="text-4xl font-black text-blue-600">¥6,500</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-6 text-white text-lg">参加費には宿泊費、食費などが含まれています。</p>
+      </section>
+
+      <!-- Schedule -->
+      <section class="mb-8" aria-labelledby="schedule">
+        <h2 id="schedule" class="text-4xl font-bold text-white text-center mb-8">アクション満載！合宿スケジュール</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Day 1 -->
+          <article class="bg-white/95 rounded-2xl p-6 card-hover" aria-label="1日目 (8/14)">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">1日目 (8/14)</h3>
+            <div class="space-y-3">
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🚌</div><div class="font-semibold">6:30 出発</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">📍</div><div class="font-semibold">8:30 到着</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🏐</div><div class="font-semibold">9:00 午前練習</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">12:00 昼食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🏐</div><div class="font-semibold">13:00 午後の練習開始</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">17:30 夕食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">📦</div><div class="font-semibold">18:30 荷物整理</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🎆</div><div class="font-semibold">19:00 花火</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🚿</div><div class="font-semibold">20:00 風呂</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">📝</div><div class="font-semibold">21:00 ミーティング</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">😴</div><div class="font-semibold">22:00 消灯</div></div>
+            </div>
+          </article>
+          <!-- Day 2 -->
+          <article class="bg-white/95 rounded-2xl p-6 card-hover" aria-label="2日目 (8/15)">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">2日目 (8/15)</h3>
+            <div class="space-y-3">
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">☀️</div><div class="font-semibold">6:00 起床</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🚶</div><div class="font-semibold">6:15 散歩</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">7:00 朝食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🏐</div><div class="font-semibold">9:00 午前練習</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">12:00 昼食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍉</div><div class="font-semibold">13:00 スイカ割り大会</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">17:30 夕食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🚿</div><div class="font-semibold">18:30 風呂</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🎮</div><div class="font-semibold">19:30 レクリエーション</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">📝</div><div class="font-semibold">20:30 ミーティング</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">😴</div><div class="font-semibold">22:00 消灯</div></div>
+            </div>
+          </article>
+          <!-- Day 3 -->
+          <article class="bg-white/95 rounded-2xl p-6 card-hover" aria-label="3日目 (8/16)">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">3日目 (8/16)</h3>
+            <div class="space-y-3">
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">☀️</div><div class="font-semibold">6:00 起床</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🧹</div><div class="font-semibold">6:15 掃除・片付け</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">7:00 朝食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🏐</div><div class="font-semibold">9:00 午前練習</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🍽️</div><div class="font-semibold">12:00 昼食</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🏐</div><div class="font-semibold">13:00 午後練習</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🚌</div><div class="font-semibold">16:30 出発</div></div>
+              <div class="timeline-item"><div class="timeline-icon" aria-hidden="true">🏠</div><div class="font-semibold">19:00 帰宅予定</div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Packing list -->
+      <section class="mb-8" aria-labelledby="pack">
+        <h2 id="pack" class="text-4xl font-bold text-white text-center mb-8">準備はOK？持ち物チェックリスト</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <article class="bg-white/95 rounded-2xl p-6 card-hover">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">👤 個人の持ち物</h3>
+            <ul class="grid grid-cols-2 gap-2 text-sm" role="list">
+              <li class="flex items-center gap-2"><span aria-hidden="true">👕</span><span>バレーボールウェア (たくさん！)</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">👟</span><span>体育館シューズ</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">🧦</span><span>着替え (下着、靴下など)</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">😴</span><span>パジャマ</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">🧼</span><span>洗面用具</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">💧</span><span>水筒</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">🧢</span><span>帽子</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">🦟</span><span>虫よけスプレー</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">💊</span><span>常備薬</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">📝</span><span>筆記用具</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">📄</span><span>健康保険証のコピー</span></li>
+            </ul>
+          </article>
+          <article class="bg-white/95 rounded-2xl p-6 card-hover">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">🤝 チームの持ち物</h3>
+            <ul class="space-y-2 text-sm" role="list">
+              <li class="flex items-center gap-2"><span aria-hidden="true">🏐</span><span>ボール</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">🧺</span><span>ボールかご</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">🌐</span><span>ネット</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">⏱️</span><span>タイマー</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">📏</span><span>メジャー</span></li>
+              <li class="flex items-center gap-2"><span aria-hidden="true">📏</span><span>テープ（ラインテープ）</span></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Quiz -->
+      <section class="mb-8" aria-labelledby="quiz">
+        <h2 id="quiz" class="text-4xl font-bold text-white text-center mb-8">🧠 バレーボールクイズに挑戦！</h2>
+        <div class="bg-white/95 rounded-2xl p-6 card-hover">
+          <div id="quizContainer">
+            <div id="questionContainer">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4" id="questionTitle">問題 1</h3>
+              <p class="text-lg text-gray-700 mb-6" id="questionText"></p>
+              <div class="grid grid-cols-2 gap-4 mb-6" id="optionsContainer" role="group" aria-label="選択肢"></div>
+            </div>
+            <div id="resultContainer" class="hidden">
+              <div id="answerFeedback" class="mb-4" aria-live="polite"></div>
+              <div id="explanation" class="text-gray-700 mb-4"></div>
+              <button id="nextButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">次の問題</button>
+            </div>
+            <div id="finalResult" class="hidden text-center">
+              <h3 class="text-3xl font-bold text-gray-800 mb-4">クイズ完了！</h3>
+              <p id="scoreDisplay" class="text-2xl font-bold text-blue-600 mb-4"></p>
+              <p id="scoreMessage" class="text-lg text-gray-700 mb-4"></p>
+              <p id="perfectScoreMessage" class="hidden text-2xl font-bold text-red-600 mb-4">🎉 コーチに報告しよう！ 🎉</p>
+              <button id="restartButton" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">もう一度挑戦</button>
+            </div>
+            <div class="text-center mt-4">
+              <p class="text-lg font-semibold text-gray-700">スコア: <span id="currentScore">0</span> / <span id="questionCount">5</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Important Notes -->
+      <section class="mb-8" aria-labelledby="notes">
+        <h2 id="notes" class="text-4xl font-bold text-white text-center mb-8">大切なこと：みんなで守ろう！</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="bg-white/95 rounded-2xl p-6 card-hover text-center">
+            <div class="text-6xl mb-4" aria-hidden="true">👨‍👩‍👧‍👦</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">保護者の皆様へのお願い</h3>
+            <p class="text-gray-700">この合宿は子どもたちの自立を促す貴重な機会です。困ったことがあれば、自分の親ではなく指導者に相談するようお子様の背中を押してあげてください。皆様にはボランティアとして、そして合宿を楽しむ一員としてのご参加をお願いいたします！</p>
+          </article>
+          <article class="bg-white/95 rounded-2xl p-6 card-hover text-center">
+            <div class="text-6xl mb-4" aria-hidden="true">☀️</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">暑さ対策について</h3>
+            <p class="text-gray-700">体育館にエアコンはありません。こまめな水分補給と休憩を徹底し、熱中症を防ぎます。汗をたくさんかくので、着替えは多めに持ってきてください！</p>
+          </article>
+          <article class="bg-white/95 rounded-2xl p-6 card-hover text-center">
+            <div class="text-6xl mb-4" aria-hidden="true">🚫</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">禁止事項</h3>
+            <p class="text-gray-700">子どもの個人的なお菓子の持ち込みはご遠慮ください。食事や補食はチームで管理します。</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // =============================
+    // 1) Floating ball (reduced motion friendly)
+    // =============================
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const floatingBall = document.getElementById('floatingBall')
+    let mouseX = 0, mouseY = 0
+    let ballX = 0, ballY = 0
+
+    if (!prefersReduced) {
+      document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY })
+      const animateBall = () => {
+        ballX += (mouseX - ballX) * 0.1
+        ballY += (mouseY - ballY) * 0.1
+        floatingBall.style.left = ballX + 'px'
+        floatingBall.style.top  = ballY + 'px'
+        requestAnimationFrame(animateBall)
+      }
+      animateBall()
+
+      // Click sparkles
+      document.addEventListener('click', (e) => {
+        for (let i = 0; i < 6; i++) {
+          const sparkle = document.createElement('div')
+          sparkle.className = 'sparkle'
+          sparkle.style.left = e.clientX + (Math.random()*20 - 10) + 'px'
+          sparkle.style.top  = e.clientY + (Math.random()*20 - 10) + 'px'
+          sparkle.style.animation = 'sparkle 1.5s ease'
+          document.body.appendChild(sparkle)
+          setTimeout(() => sparkle.remove(), 1500)
         }
-        animateBall();
+      })
+    } else {
+      floatingBall.style.display = 'none'
+    }
 
-        // Click effect
-        document.addEventListener('click', (e) => {
-            for (let i = 0; i < 6; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + Math.random() * 20 - 10 + 'px';
-                sparkle.style.top = e.clientY + Math.random() * 20 - 10 + 'px';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1500);
-            }
-        });
+    // =============================
+    // 2) Countdown (Tokyo timezone aware)
+    // =============================
+    const countdownEl = document.getElementById('countdown')
+    const messages = [
+      'お楽しみに！','準備は進んでいますか？','みんなで最高の夏にしよう！','技術向上のチャンス！','新しい仲間との出会い','思い出に残る3日間','バレーボール漬けの日々','成長できる貴重な時間','チームワークを深めよう','自立心を育む機会','君津の自然を満喫','最高の仲間と過ごそう'
+    ]
+    let currentMessageIndex = 0
 
-        // Countdown timer with rotating messages
-        const messages = [
-            "お楽しみに！",
-            "準備は進んでいますか？",
-            "みんなで最高の夏にしよう！",
-            "技術向上のチャンス！",
-            "新しい仲間との出会い",
-            "思い出に残る3日間",
-            "バレーボール漬けの日々",
-            "成長できる貴重な時間",
-            "チームワークを深めよう",
-            "自立心を育む機会",
-            "君津の自然を満喫",
-            "最高の仲間と過ごそう"
-        ];
+    function getYMDInTZ(date = new Date(), timeZone = 'Asia/Tokyo') {
+      const fmt = new Intl.DateTimeFormat('ja-JP', { timeZone, year:'numeric', month:'numeric', day:'numeric' })
+      const parts = fmt.formatToParts(date)
+      const y = Number(parts.find(p => p.type==='year').value)
+      const m = Number(parts.find(p => p.type==='month').value)
+      const d = Number(parts.find(p => p.type==='day').value)
+      return { y, m, d }
+    }
 
-        let currentMessageIndex = 0;
+    function daysUntil(targetY, targetM, targetD, timeZone = 'Asia/Tokyo') {
+      const { y, m, d } = getYMDInTZ(new Date(), timeZone)
+      const today = new Date(y, m - 1, d)
+      const target = new Date(targetY, targetM - 1, targetD)
+      const diff = target - today
+      return Math.floor(diff / (1000 * 60 * 60 * 24))
+    }
 
-        function updateCountdownMessage() {
-            const messageElement = document.getElementById('countdownMessage');
-            messageElement.style.opacity = '0';
-            
-            setTimeout(() => {
-                messageElement.textContent = messages[currentMessageIndex];
-                messageElement.style.opacity = '1';
-                currentMessageIndex = (currentMessageIndex + 1) % messages.length;
-            }, 250);
+    function updateCountdown() {
+      const days = daysUntil(2025, 8, 14)
+      if (days < 0) { countdownEl.textContent = '合宿中！'; return }
+      if (days === 0) { countdownEl.textContent = '今日！'; return }
+      countdownEl.textContent = `${days}日`
+    }
+
+    function updateCountdownMessage() {
+      const el = document.getElementById('countdownMessage')
+      el.style.opacity = '0'
+      setTimeout(() => {
+        el.textContent = messages[currentMessageIndex]
+        el.style.opacity = '1'
+        currentMessageIndex = (currentMessageIndex + 1) % messages.length
+      }, 200)
+    }
+
+    // =============================
+    // 3) Quiz
+    // =============================
+    const quizQuestions = [
+      { question: 'バレーボールのコートで、1チームは何人でプレイするでしょうか？', options: ['5人','6人','7人','8人'], correct: 1, explanation: '正解！バレーボールは1チーム6人でプレイします。🏐' },
+      { question: 'バレーボールで、ボールを相手コートに返すまでに何回まで触ることができるでしょうか？', options: ['2回','3回','4回','5回'], correct: 1, explanation: '正解！3回まで触ることができます。アタック、レシーブ、トスなどを組み合わせます！✨' },
+      { question: 'バレーボールのネットの高さは、小学生の場合どのくらいでしょうか？', options: ['2m','2m10cm','2m20cm','2m30cm'], correct: 0, explanation: '正解！小学生は2mです。中学生以上は2m43cmになります！📏' },
+      { question: 'バレーボールで、相手のアタックを防ぐ技術を何と呼ぶでしょうか？', options: ['スパイク','ブロック','レシーブ','サーブ'], correct: 1, explanation: '正解！ブロックです。ネット際でジャンプして相手のアタックを止めます！🛡️' },
+      { question: 'バレーボールの試合開始時に行う技術は何でしょうか？', options: ['アタック','トス','サーブ','レシーブ'], correct: 2, explanation: '正解！サーブです。試合はサーブから始まります！🏐' },
+      { question: 'バレーボールで、アタッカーにボールを上げる技術を何と呼ぶでしょうか？', options: ['スパイク','トス','ブロック','ディグ'], correct: 1, explanation: '正解！トスです。セッターがアタッカーに上げるボールのことです！🎯' },
+      { question: 'バレーボールのポジションで、主に相手から点をとる選手を何と呼ぶでしょうか？', options: ['セッター','レシーバー','アタッカー','ミドルブロッカー'], correct: 2, explanation: '正解！アタッカーです。スパイクを打って得点を狙います！⚡' },
+      { question: 'バレーボールで、1セットは何点先取で勝利でしょうか？', options: ['21点','25点','30点','15点'], correct: 0, explanation: '正解！小学生バレーボールは21点先取です！🏆' },
+      { question: '小学生バレーボールのコートの大きさはどのくらいでしょうか？', options: ['8m×8m','9m×9m','10m×10m','12m×12m'], correct: 0, explanation: '正解！小学生バレーボールのコートは8m×8mです！📐' },
+      { question: 'バレーボールで、同じ選手が連続してボールに触ることはできるでしょうか？', options: ['できる','できない','2回まで','審判次第'], correct: 1, explanation: '正解！同じ選手が連続してボールに触ることはできません！🚫' },
+      { question: 'バレーボールのコートの形は何でしょうか？', options: ['正方形','長方形','円形','六角形'], correct: 0, explanation: '正解！小学生バレーボールのコートは正方形（8m×8m）です！⬜' },
+      { question: 'バレーボールで、サーブを打つ場所はどこでしょうか？', options: ['コート内','エンドライン後ろ','ネット前','サイドライン'], correct: 1, explanation: '正解！エンドラインの後ろから打ちます！📍' },
+      { question: 'バレーボールのタイムアウトの時間は何秒でしょうか？', options: ['30秒','60秒','90秒','120秒'], correct: 0, explanation: '正解！タイムアウトの時間は30秒です。短い時間で作戦を立てましょう！⏰' },
+      { question: 'バレーボールの試合で、何セット先取すると勝利でしょうか？', options: ['1セット','2セット','3セット','4セット'], correct: 1, explanation: '正解！2セット先取で勝利です。3セットマッチで行われることが多いです！🏆' },
+      { question: 'サーブを打つとき、エンドラインを踏んでもよいでしょうか？', options: ['踏んでもよい','踏んではダメ','片足だけなら良い','審判次第'], correct: 1, explanation: '正解！エンドラインを踏んではダメです。ラインの後ろから打ちましょう！🚫' },
+      { question: 'サーブはいつ打っていいでしょうか？', options: ['ホイッスルがなってから','準備できたらすぐ','コーチが打てといったら','気分しだい'], correct: 0, explanation: '正解！ホイッスルがなってから打ちます。審判の合図を待ちましょう！🎵' },
+      { question: 'アタッカーにトスを上げる選手を何というでしょうか？', options: ['セッター','レシーバー','ブロッカー','リベロ'], correct: 0, explanation: '正解！セッターです。チームの司令塔として、アタッカーが打ちやすいトスを上げます！🎯' },
+    ]
+
+    let currentQuestionIndex = 0
+    let score = 0
+    let selectedQuestions = []
+    let answered = false
+    const QUESTION_PICK = 5
+
+    function initializeQuiz() {
+      selectedQuestions = getRandomQuestions(quizQuestions, QUESTION_PICK)
+      currentQuestionIndex = 0
+      score = 0
+      answered = false
+      document.getElementById('questionCount').textContent = QUESTION_PICK
+      showQuestion()
+      updateScore()
+    }
+
+    function getRandomQuestions(questions, count) {
+      const shuffled = [...questions].sort(() => Math.random() - 0.5)
+      return shuffled.slice(0, count)
+    }
+
+    function showQuestion() {
+      const question = selectedQuestions[currentQuestionIndex]
+      document.getElementById('questionTitle').textContent = `問題 ${currentQuestionIndex + 1}`
+      document.getElementById('questionText').textContent = question.question
+      const optionsContainer = document.getElementById('optionsContainer')
+      optionsContainer.innerHTML = ''
+
+      question.options.forEach((option, index) => {
+        const button = document.createElement('button')
+        button.className = 'quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300'
+        button.textContent = option
+        button.setAttribute('type','button')
+        button.setAttribute('aria-pressed','false')
+        button.addEventListener('click', () => selectAnswer(index))
+        button.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectAnswer(index) } })
+        optionsContainer.appendChild(button)
+      })
+
+      document.getElementById('questionContainer').classList.remove('hidden')
+      document.getElementById('resultContainer').classList.add('hidden')
+      document.getElementById('finalResult').classList.add('hidden')
+      answered = false
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return
+      answered = true
+      const question = selectedQuestions[currentQuestionIndex]
+      const options = document.querySelectorAll('.quiz-option')
+
+      options.forEach((option, index) => {
+        option.disabled = true
+        option.setAttribute('aria-pressed', index === selectedIndex ? 'true' : 'false')
+        option.classList.remove('bg-blue-100','hover:bg-blue-200')
+        if (index === question.correct) {
+          option.classList.add('bg-green-600','text-white')
+        } else if (index === selectedIndex) {
+          option.classList.add('bg-red-600','text-white')
+        } else {
+          option.classList.add('bg-blue-100','text-blue-800')
         }
+      })
 
-        // Initialize everything when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            setInterval(updateCountdownMessage, 3000);
-            updateCountdown();
-            setInterval(updateCountdown, 1000); // 1秒ごとに更新
-            initializeQuiz();
-        });
+      const isCorrect = selectedIndex === question.correct
+      if (isCorrect) { score++; updateScore() }
+      setTimeout(() => showResult(isCorrect, question.explanation), 800)
+    }
 
-        // Real-time countdown function
-        function updateCountdown() {
-            const campDate = new Date('2025-08-14T00:00:00'); // 合宿開始日（8月14日の0時）
-            const now = new Date();
-            
-            // 今日の日付を取得（時間は0時に設定）
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const campDay = new Date(2025, 7, 14); // 8月14日（月は0から始まるので7）
-            
-            // 日数の差を計算
-            const timeDiff = campDay - today;
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            
-            if (days < 0) {
-                document.getElementById('countdown').textContent = '合宿中！';
-                return;
-            } else if (days === 0) {
-                document.getElementById('countdown').textContent = '今日！';
-                return;
-            }
-            
-            document.getElementById('countdown').textContent = `${days}日`;
-        }
+    function showResult(isCorrect, explanation) {
+      document.getElementById('questionContainer').classList.add('hidden')
+      document.getElementById('resultContainer').classList.remove('hidden')
+      const feedback = document.getElementById('answerFeedback')
+      feedback.innerHTML = isCorrect ? '<div class="text-green-600 font-bold text-xl">正解！ 🎉</div>' : '<div class="text-red-600 font-bold text-xl">不正解 😅</div>'
+      document.getElementById('explanation').textContent = explanation
+      const nextButton = document.getElementById('nextButton')
+      if (currentQuestionIndex < selectedQuestions.length - 1) {
+        nextButton.textContent = '次の問題'
+        nextButton.onclick = nextQuestion
+      } else {
+        nextButton.textContent = '結果を見る'
+        nextButton.onclick = showFinalResult
+      }
+    }
 
-        // Quiz functionality
-        const quizQuestions = [
-            {
-                question: "バレーボールのコートで、1チームは何人でプレイするでしょうか？",
-                options: ["5人", "6人", "7人", "8人"],
-                correct: 1,
-                explanation: "正解！バレーボールは1チーム6人でプレイします。🏐"
-            },
-            {
-                question: "バレーボールで、ボールを相手コートに返すまでに何回まで触ることができるでしょうか？",
-                options: ["2回", "3回", "4回", "5回"],
-                correct: 1,
-                explanation: "正解！3回まで触ることができます。アタック、レシーブ、トスなどを組み合わせます！✨"
-            },
-            {
-                question: "バレーボールのネットの高さは、小学生の場合どのくらいでしょうか？",
-                options: ["2m", "2m10cm", "2m20cm", "2m30cm"],
-                correct: 0,
-                explanation: "正解！小学生は2mです。中学生以上は2m43cmになります！📏"
-            },
-            {
-                question: "バレーボールで、相手のアタックを防ぐ技術を何と呼ぶでしょうか？",
-                options: ["スパイク", "ブロック", "レシーブ", "サーブ"],
-                correct: 1,
-                explanation: "正解！ブロックです。ネット際でジャンプして相手のアタックを止めます！🛡️"
-            },
-            {
-                question: "バレーボールの試合開始時に行う技術は何でしょうか？",
-                options: ["アタック", "トス", "サーブ", "レシーブ"],
-                correct: 2,
-                explanation: "正解！サーブです。試合はサーブから始まります！🏐"
-            },
-            {
-                question: "バレーボールで、アタッカーにボールを上げる技術を何と呼ぶでしょうか？",
-                options: ["スパイク", "トス", "ブロック", "ディグ"],
-                correct: 1,
-                explanation: "正解！トスです。セッターがアタッカーに上げるボールのことです！🎯"
-            },
-            {
-                question: "バレーボールのポジションで、主に相手から点をとる選手を何と呼ぶでしょうか？",
-                options: ["セッター", "レシーバー", "アタッカー", "ミドルブロッカー"],
-                correct: 2,
-                explanation: "正解！アタッカーです。スパイクを打って得点を狙います！⚡"
-            },
-            {
-                question: "バレーボールで、1セットは何点先取で勝利でしょうか？",
-                options: ["21点", "25点", "30点", "15点"],
-                correct: 0,
-                explanation: "正解！小学生バレーボールは21点先取です！🏆"
-            },
-            {
-                question: "小学生バレーボールのコートの大きさはどのくらいでしょうか？",
-                options: ["8m×8m", "9m×9m", "10m×10m", "12m×12m"],
-                correct: 0,
-                explanation: "正解！小学生バレーボールのコートは8m×8mです！📐"
-            },
-            {
-                question: "バレーボールで、同じ選手が連続してボールに触ることはできるでしょうか？",
-                options: ["できる", "できない", "2回まで", "審判次第"],
-                correct: 1,
-                explanation: "正解！同じ選手が連続してボールに触ることはできません！🚫"
-            },
-            {
-                question: "バレーボールのコートの形は何でしょうか？",
-                options: ["正方形", "長方形", "円形", "六角形"],
-                correct: 0,
-                explanation: "正解！小学生バレーボールのコートは正方形（8m×8m）です！⬜"
-            },
-            {
-                question: "バレーボールで、サーブを打つ場所はどこでしょうか？",
-                options: ["コート内", "エンドライン後ろ", "ネット前", "サイドライン"],
-                correct: 1,
-                explanation: "正解！エンドラインの後ろから打ちます！📍"
-            },
-            {
-                question: "バレーボールのタイムアウトの時間は何秒でしょうか？",
-                options: ["30秒", "60秒", "90秒", "120秒"],
-                correct: 0,
-                explanation: "正解！タイムアウトの時間は30秒です。短い時間で作戦を立てましょう！⏰"
-            },
-            {
-                question: "バレーボールの試合で、何セット先取すると勝利でしょうか？",
-                options: ["1セット", "2セット", "3セット", "4セット"],
-                correct: 1,
-                explanation: "正解！2セット先取で勝利です。3セットマッチで行われることが多いです！🏆"
-            },
-            {
-                question: "サーブを打つとき、エンドラインを踏んでもよいでしょうか？",
-                options: ["踏んでもよい", "踏んではダメ", "片足だけなら良い", "審判次第"],
-                correct: 1,
-                explanation: "正解！エンドラインを踏んではダメです。ラインの後ろから打ちましょう！🚫"
-            },
-            {
-                question: "サーブはいつ打っていいでしょうか？",
-                options: ["ホイッスルがなってから", "準備できたらすぐ", "コーチが打てといったら", "気分しだい"],
-                correct: 0,
-                explanation: "正解！ホイッスルがなってから打ちます。審判の合図を待ちましょう！🎵"
-            },
-            {
-                question: "アタッカーにトスを上げる選手を何というでしょうか？",
-                options: ["セッター", "レシーバー", "ブロッカー", "リベロ"],
-                correct: 0,
-                explanation: "正解！セッターです。チームの司令塔として、アタッカーが打ちやすいトスを上げます！🎯"
-            }
-        ];
+    function nextQuestion(){ currentQuestionIndex++; showQuestion() }
 
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let selectedQuestions = [];
-        let answered = false;
+    function showFinalResult(){
+      document.getElementById('resultContainer').classList.add('hidden')
+      document.getElementById('finalResult').classList.remove('hidden')
+      const percentage = Math.round((score / selectedQuestions.length) * 100)
+      document.getElementById('scoreDisplay').textContent = `${score} / ${selectedQuestions.length} (${percentage}%)`
+      let message = ''
+      if (percentage === 100) {
+        message = 'パーフェクト！バレーボールマスターです！'
+        document.getElementById('perfectScoreMessage').classList.remove('hidden')
+      } else if (percentage >= 80) { message = 'すごい！バレーボール博士ですね！🏆' }
+      else if (percentage >= 60) { message = 'よくできました！もう少しで完璧です！🎉' }
+      else if (percentage >= 40) { message = 'がんばりました！練習すればもっと上達しますよ！💪' }
+      else { message = 'まだまだこれから！バレーボールを楽しく学びましょう！📚' }
+      document.getElementById('scoreMessage').textContent = message
+      document.getElementById('restartButton').onclick = initializeQuiz
+    }
 
-        function initializeQuiz() {
-            // ランダムに5問を選択
-            selectedQuestions = getRandomQuestions(quizQuestions, 5);
-            currentQuestionIndex = 0;
-            score = 0;
-            answered = false;
-            showQuestion();
-            updateScore();
-        }
+    function updateScore(){ document.getElementById('currentScore').textContent = score }
 
-        function getRandomQuestions(questions, count) {
-            const shuffled = [...questions].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
-
-        function showQuestion() {
-            const question = selectedQuestions[currentQuestionIndex];
-            document.getElementById('questionTitle').textContent = `問題 ${currentQuestionIndex + 1}`;
-            document.getElementById('questionText').textContent = question.question;
-            
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
-            
-            question.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.className = 'quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg transition-all duration-200';
-                button.textContent = option;
-                button.onclick = () => selectAnswer(index);
-                optionsContainer.appendChild(button);
-            });
-            
-            document.getElementById('questionContainer').classList.remove('hidden');
-            document.getElementById('resultContainer').classList.add('hidden');
-            document.getElementById('finalResult').classList.add('hidden');
-            answered = false;
-        }
-
-        function selectAnswer(selectedIndex) {
-            if (answered) return;
-            answered = true;
-            
-            const question = selectedQuestions[currentQuestionIndex];
-            const options = document.querySelectorAll('.quiz-option');
-            
-            options.forEach((option, index) => {
-                if (index === question.correct) {
-                    option.classList.remove('bg-blue-100', 'hover:bg-blue-200');
-                    option.classList.add('bg-green-500', 'text-white');
-                } else if (index === selectedIndex) {
-                    option.classList.remove('bg-blue-100', 'hover:bg-blue-200');
-                    option.classList.add('bg-red-500', 'text-white');
-                }
-                option.disabled = true;
-            });
-            
-            const isCorrect = selectedIndex === question.correct;
-            if (isCorrect) {
-                score++;
-                updateScore();
-            }
-            
-            setTimeout(() => {
-                showResult(isCorrect, question.explanation);
-            }, 1000);
-        }
-
-        function showResult(isCorrect, explanation) {
-            document.getElementById('questionContainer').classList.add('hidden');
-            document.getElementById('resultContainer').classList.remove('hidden');
-            
-            const feedback = document.getElementById('answerFeedback');
-            if (isCorrect) {
-                feedback.innerHTML = '<div class="text-green-600 font-bold text-xl">正解！ 🎉</div>';
-            } else {
-                feedback.innerHTML = '<div class="text-red-600 font-bold text-xl">不正解 😅</div>';
-            }
-            
-            document.getElementById('explanation').textContent = explanation;
-            
-            const nextButton = document.getElementById('nextButton');
-            if (currentQuestionIndex < selectedQuestions.length - 1) {
-                nextButton.textContent = '次の問題';
-                nextButton.onclick = nextQuestion;
-            } else {
-                nextButton.textContent = '結果を見る';
-                nextButton.onclick = showFinalResult;
-            }
-        }
-
-        function nextQuestion() {
-            currentQuestionIndex++;
-            showQuestion();
-        }
-
-        function showFinalResult() {
-            document.getElementById('resultContainer').classList.add('hidden');
-            document.getElementById('finalResult').classList.remove('hidden');
-            
-            const percentage = Math.round((score / selectedQuestions.length) * 100);
-            document.getElementById('scoreDisplay').textContent = `${score} / ${selectedQuestions.length} (${percentage}%)`;
-            
-            let message = '';
-            if (percentage === 100) {
-                message = 'パーフェクト！バレーボールマスターです！';
-                document.getElementById('perfectScoreMessage').classList.remove('hidden');
-            } else if (percentage >= 80) {
-                message = 'すごい！バレーボール博士ですね！🏆';
-            } else if (percentage >= 60) {
-                message = 'よくできました！もう少しで完璧です！🎉';
-            } else if (percentage >= 40) {
-                message = 'がんばりました！練習すればもっと上達しますよ！💪';
-            } else {
-                message = 'まだまだこれから！バレーボールを楽しく学びましょう！📚';
-            }
-            
-            document.getElementById('scoreMessage').textContent = message;
-            document.getElementById('restartButton').onclick = initializeQuiz;
-        }
-
-        function updateScore() {
-            document.getElementById('currentScore').textContent = score;
-        }
-    </script>
+    // =============================
+    // 4) Init
+    // =============================
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCountdown(); setInterval(updateCountdown, 1000 * 60 * 30) // 30分ごとで十分
+      updateCountdownMessage(); setInterval(updateCountdownMessage, 3000)
+      initializeQuiz()
+    })
+  </script>
 </body>
 </html>
-
