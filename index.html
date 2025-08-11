@@ -32,13 +32,14 @@
 
     /* アニメーション配慮 */
     @media (prefers-reduced-motion:reduce){
-      *, *::before, *::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition: none !important}
+      *, *::before, *::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition:none !important}
     }
   </style>
 </head>
 <body>
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:p-2 focus:bg-white focus:rounded-lg">本文へスキップ</a>
   <div class="floating-ball" id="floatingBall" aria-hidden="true"></div>
+
   <header class="container mx-auto px-4 py-8">
     <div class="bg-white/95 rounded-3xl shadow-2xl p-8 mb-8 card-hover">
       <div class="text-center">
@@ -128,6 +129,155 @@
           </div>
         </div>
         <p class="text-center mt-6 text-white text-lg">参加費には宿泊費、食費などが含まれています。</p>
+      </section>
+
+      <!-- 出発連絡（ビジュアル強化版） -->
+      <section class="mb-12" aria-labelledby="departure-info">
+        <h2 id="departure-info" class="text-4xl font-black text-white text-center mb-6">
+          合宿1日目の出発連絡
+        </h2>
+
+        <!-- 集合ボックス -->
+        <div class="bg-white/95 rounded-2xl p-6 md:p-7 shadow-lg mb-6">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 text-4xl" aria-hidden="true">📍</div>
+              <div>
+                <p class="text-gray-800">
+                  今回は<strong>すくすく公園</strong>集合です。遠隔のひとは順次ピックアップします。
+                </p>
+                <ul class="mt-3 grid sm:grid-cols-2 gap-2 text-gray-700">
+                  <li class="flex items-center gap-2">
+                    <span class="text-xl" aria-hidden="true">⏰</span>
+                    <span><span class="font-semibold">集合時間：</span>6:30</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span class="text-xl" aria-hidden="true">🗺️</span>
+                    <span><span class="font-semibold">場所：</span>すくすく公園</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- 地図リンク（必要ならURLを差し替え） -->
+            <a href="#" class="inline-flex items-center justify-center rounded-xl px-4 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 transition"
+               aria-label="集合場所を地図で開く">
+              地図を開く
+              <span class="ml-2" aria-hidden="true">➡️</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 配車カード -->
+        <h3 class="text-2xl font-bold text-white mb-3">配車</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- アジャ号 -->
+          <article class="rounded-2xl overflow-hidden shadow-lg bg-white/95">
+            <header class="px-6 py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl" aria-hidden="true">🚐</span>
+                  <h4 class="text-xl font-extrabold">アジャ号</h4>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-semibold">
+                  乗車 6名
+                </span>
+              </div>
+            </header>
+            <div class="p-6">
+              <p class="text-sm text-gray-500 mb-2">乗車メンバー</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-800 px-3 py-1 text-sm font-semibold">みかぜ</span>
+                <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-800 px-3 py-1 text-sm font-semibold">あいき</span>
+                <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-800 px-3 py-1 text-sm font-semibold">りいさ</span>
+                <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-800 px-3 py-1 text-sm font-semibold">はるか</span>
+                <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-800 px-3 py-1 text-sm font-semibold">めい</span>
+                <span class="inline-flex items-center rounded-full bg-indigo-50 text-indigo-800 px-3 py-1 text-sm font-semibold">まい</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 田中号 -->
+          <article class="rounded-2xl overflow-hidden shadow-lg bg-white/95">
+            <header class="px-6 py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl" aria-hidden="true">🚐</span>
+                  <h4 class="text-xl font-extrabold">田中号</h4>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-semibold">
+                  乗車 6名
+                </span>
+              </div>
+            </header>
+            <div class="p-6">
+              <p class="text-sm text-gray-500 mb-2">乗車メンバー</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-800 px-3 py-1 text-sm font-semibold">かなこ（りん母）</span>
+                <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-800 px-3 py-1 text-sm font-semibold">こはる</span>
+                <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-800 px-3 py-1 text-sm font-semibold">すずの</span>
+                <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-800 px-3 py-1 text-sm font-semibold">りん</span>
+                <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-800 px-3 py-1 text-sm font-semibold">ゆめ</span>
+                <span class="inline-flex items-center rounded-full bg-rose-50 text-rose-800 px-3 py-1 text-sm font-semibold">りこ</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 岩井号 -->
+          <article class="rounded-2xl overflow-hidden shadow-lg bg-white/95">
+            <header class="px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl" aria-hidden="true">🚐</span>
+                  <h4 class="text-xl font-extrabold">岩井号</h4>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-semibold">
+                  乗車 6名
+                </span>
+              </div>
+            </header>
+            <div class="p-6">
+              <p class="text-sm text-gray-500 mb-2">乗車メンバー</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-sm font-semibold">はる母</span>
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-sm font-semibold">ななみ</span>
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-sm font-semibold">はる</span>
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-sm font-semibold">さら</span>
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-sm font-semibold">ゆあ</span>
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-800 px-3 py-1 text-sm font-semibold">あやね</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 早瀬号 -->
+          <article class="rounded-2xl overflow-hidden shadow-lg bg-white/95">
+            <header class="px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="text-2xl" aria-hidden="true">🚐</span>
+                  <h4 class="text-xl font-extrabold">早瀬号</h4>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-semibold">
+                  乗車 5名
+                </span>
+              </div>
+            </header>
+            <div class="p-6">
+              <p class="text-sm text-gray-500 mb-2">乗車メンバー</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="inline-flex items-center rounded-full bg-amber-50 text-amber-800 px-3 py-1 text-sm font-semibold">みかぜ母</span>
+                <span class="inline-flex items-center rounded-full bg-amber-50 text-amber-800 px-3 py-1 text-sm font-semibold">ゆめ母</span>
+                <span class="inline-flex items-center rounded-full bg-amber-50 text-amber-800 px-3 py-1 text-sm font-semibold">さら母</span>
+                <span class="inline-flex items-center rounded-full bg-amber-50 text-amber-800 px-3 py-1 text-sm font-semibold">ゆあ母</span>
+                <span class="inline-flex items-center rounded-full bg-amber-50 text-amber-800 px-3 py-1 text-sm font-semibold">あやね母</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 補足 -->
+        <div class="mt-4 text-white/90 text-sm">
+          ※ 当日の体調や都合により配車は変更になる場合があります。変更は朝の点呼でお知らせします。
+        </div>
       </section>
 
       <!-- Schedule -->
@@ -273,13 +423,10 @@
   </main>
 
   <script>
-    // =============================
     // 1) Floating ball (reduced motion friendly)
-    // =============================
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const floatingBall = document.getElementById('floatingBall')
-    let mouseX = 0, mouseY = 0
-    let ballX = 0, ballY = 0
+    let mouseX = 0, mouseY = 0, ballX = 0, ballY = 0
 
     if (!prefersReduced) {
       document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY })
@@ -295,25 +442,25 @@
       // Click sparkles
       document.addEventListener('click', (e) => {
         for (let i = 0; i < 6; i++) {
-          const sparkle = document.createElement('div')
-          sparkle.className = 'sparkle'
-          sparkle.style.left = e.clientX + (Math.random()*20 - 10) + 'px'
-          sparkle.style.top  = e.clientY + (Math.random()*20 - 10) + 'px'
-          sparkle.style.animation = 'sparkle 1.5s ease'
-          document.body.appendChild(sparkle)
-          setTimeout(() => sparkle.remove(), 1500)
+          const s = document.createElement('div')
+          s.className = 'sparkle'
+          s.style.left = e.clientX + (Math.random()*20 - 10) + 'px'
+          s.style.top  = e.clientY + (Math.random()*20 - 10) + 'px'
+          s.style.animation = 'sparkle 1.5s ease'
+          document.body.appendChild(s)
+          setTimeout(() => s.remove(), 1500)
         }
       })
     } else {
       floatingBall.style.display = 'none'
     }
 
-    // =============================
     // 2) Countdown (Tokyo timezone aware)
-    // =============================
     const countdownEl = document.getElementById('countdown')
     const messages = [
-      'お楽しみに！','準備は進んでいますか？','みんなで最高の夏にしよう！','技術向上のチャンス！','新しい仲間との出会い','思い出に残る3日間','バレーボール漬けの日々','成長できる貴重な時間','チームワークを深めよう','自立心を育む機会','君津の自然を満喫','最高の仲間と過ごそう'
+      'お楽しみに！','準備は進んでいますか？','みんなで最高の夏にしよう！','技術向上のチャンス！',
+      '新しい仲間との出会い','思い出に残る3日間','バレーボール漬けの日々','成長できる貴重な時間',
+      'チームワークを深めよう','自立心を育む機会','君津の自然を満喫','最高の仲間と過ごそう'
     ]
     let currentMessageIndex = 0
 
@@ -351,9 +498,7 @@
       }, 200)
     }
 
-    // =============================
     // 3) Quiz
-    // =============================
     const quizQuestions = [
       { question: 'バレーボールのコートで、1チームは何人でプレイするでしょうか？', options: ['5人','6人','7人','8人'], correct: 1, explanation: '正解！バレーボールは1チーム6人でプレイします。🏐' },
       { question: 'バレーボールで、ボールを相手コートに返すまでに何回まで触ることができるでしょうか？', options: ['2回','3回','4回','5回'], correct: 1, explanation: '正解！3回まで触ることができます。アタック、レシーブ、トスなどを組み合わせます！✨' },
@@ -374,20 +519,14 @@
       { question: 'アタッカーにトスを上げる選手を何というでしょうか？', options: ['セッター','レシーバー','ブロッカー','リベロ'], correct: 0, explanation: '正解！セッターです。チームの司令塔として、アタッカーが打ちやすいトスを上げます！🎯' },
     ]
 
-    let currentQuestionIndex = 0
-    let score = 0
-    let selectedQuestions = []
-    let answered = false
+    let currentQuestionIndex = 0, score = 0, selectedQuestions = [], answered = false
     const QUESTION_PICK = 5
 
     function initializeQuiz() {
       selectedQuestions = getRandomQuestions(quizQuestions, QUESTION_PICK)
-      currentQuestionIndex = 0
-      score = 0
-      answered = false
+      currentQuestionIndex = 0; score = 0; answered = false
       document.getElementById('questionCount').textContent = QUESTION_PICK
-      showQuestion()
-      updateScore()
+      showQuestion(); updateScore()
     }
 
     function getRandomQuestions(questions, count) {
@@ -396,21 +535,21 @@
     }
 
     function showQuestion() {
-      const question = selectedQuestions[currentQuestionIndex]
+      const q = selectedQuestions[currentQuestionIndex]
       document.getElementById('questionTitle').textContent = `問題 ${currentQuestionIndex + 1}`
-      document.getElementById('questionText').textContent = question.question
+      document.getElementById('questionText').textContent = q.question
       const optionsContainer = document.getElementById('optionsContainer')
       optionsContainer.innerHTML = ''
 
-      question.options.forEach((option, index) => {
-        const button = document.createElement('button')
-        button.className = 'quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300'
-        button.textContent = option
-        button.setAttribute('type','button')
-        button.setAttribute('aria-pressed','false')
-        button.addEventListener('click', () => selectAnswer(index))
-        button.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectAnswer(index) } })
-        optionsContainer.appendChild(button)
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button')
+        btn.className = 'quiz-option bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300'
+        btn.textContent = opt
+        btn.type = 'button'
+        btn.setAttribute('aria-pressed','false')
+        btn.addEventListener('click', () => selectAnswer(idx))
+        btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectAnswer(idx) } })
+        optionsContainer.appendChild(btn)
       })
 
       document.getElementById('questionContainer').classList.remove('hidden')
@@ -422,32 +561,28 @@
     function selectAnswer(selectedIndex) {
       if (answered) return
       answered = true
-      const question = selectedQuestions[currentQuestionIndex]
+      const q = selectedQuestions[currentQuestionIndex]
       const options = document.querySelectorAll('.quiz-option')
 
       options.forEach((option, index) => {
         option.disabled = true
         option.setAttribute('aria-pressed', index === selectedIndex ? 'true' : 'false')
         option.classList.remove('bg-blue-100','hover:bg-blue-200')
-        if (index === question.correct) {
-          option.classList.add('bg-green-600','text-white')
-        } else if (index === selectedIndex) {
-          option.classList.add('bg-red-600','text-white')
-        } else {
-          option.classList.add('bg-blue-100','text-blue-800')
-        }
+        if (index === q.correct) option.classList.add('bg-green-600','text-white')
+        else if (index === selectedIndex) option.classList.add('bg-red-600','text-white')
+        else option.classList.add('bg-blue-100','text-blue-800')
       })
 
-      const isCorrect = selectedIndex === question.correct
+      const isCorrect = selectedIndex === q.correct
       if (isCorrect) { score++; updateScore() }
-      setTimeout(() => showResult(isCorrect, question.explanation), 800)
+      setTimeout(() => showResult(isCorrect, q.explanation), 800)
     }
 
     function showResult(isCorrect, explanation) {
       document.getElementById('questionContainer').classList.add('hidden')
       document.getElementById('resultContainer').classList.remove('hidden')
-      const feedback = document.getElementById('answerFeedback')
-      feedback.innerHTML = isCorrect ? '<div class="text-green-600 font-bold text-xl">正解！ 🎉</div>' : '<div class="text-red-600 font-bold text-xl">不正解 😅</div>'
+      document.getElementById('answerFeedback').innerHTML =
+        isCorrect ? '<div class="text-green-600 font-bold text-xl">正解！ 🎉</div>' : '<div class="text-red-600 font-bold text-xl">不正解 😅</div>'
       document.getElementById('explanation').textContent = explanation
       const nextButton = document.getElementById('nextButton')
       if (currentQuestionIndex < selectedQuestions.length - 1) {
@@ -470,19 +605,17 @@
       if (percentage === 100) {
         message = 'パーフェクト！バレーボールマスターです！'
         document.getElementById('perfectScoreMessage').classList.remove('hidden')
-      } else if (percentage >= 80) { message = 'すごい！バレーボール博士ですね！🏆' }
-      else if (percentage >= 60) { message = 'よくできました！もう少しで完璧です！🎉' }
-      else if (percentage >= 40) { message = 'がんばりました！練習すればもっと上達しますよ！💪' }
-      else { message = 'まだまだこれから！バレーボールを楽しく学びましょう！📚' }
+      } else if (percentage >= 80) message = 'すごい！バレーボール博士ですね！🏆'
+      else if (percentage >= 60) message = 'よくできました！もう少しで完璧です！🎉'
+      else if (percentage >= 40) message = 'がんばりました！練習すればもっと上達しますよ！💪'
+      else message = 'まだまだこれから！バレーボールを楽しく学びましょう！📚'
       document.getElementById('scoreMessage').textContent = message
       document.getElementById('restartButton').onclick = initializeQuiz
     }
 
     function updateScore(){ document.getElementById('currentScore').textContent = score }
 
-    // =============================
     // 4) Init
-    // =============================
     document.addEventListener('DOMContentLoaded', () => {
       updateCountdown(); setInterval(updateCountdown, 1000 * 60 * 30) // 30分ごとで十分
       updateCountdownMessage(); setInterval(updateCountdownMessage, 3000)
